@@ -1,0 +1,9 @@
+# Robots.txt for VartiMax Consultant (https://vartimaxconsultant.com)
+User-agent: *
+Allow: /
+
+# Disallow transient or internal assets
+Disallow: /api/private/
+
+# XML Sitemap Location
+Sitemap: https://vartimaxconsultant.com/sitemap.xml

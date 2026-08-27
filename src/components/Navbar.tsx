@@ -12,7 +12,8 @@ import {
   FileText,
   Search,
   Sparkles,
-  Plane
+  Plane,
+  BookOpen
 } from 'lucide-react';
 import { VISA_SERVICES } from '../data/servicesData';
 
@@ -91,14 +92,15 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Desktop Navigation Links */}
         <nav className="hidden lg:flex items-center gap-3.5 xl:gap-6 2xl:gap-7 text-[13px] xl:text-sm font-semibold text-[#042354] shrink-0">
-          <button
-            onClick={() => handleNav('home')}
+          <a
+            href="#home"
+            onClick={(e) => { e.preventDefault(); handleNav('home'); }}
             className={`whitespace-nowrap transition-colors hover:text-[#C5A059] cursor-pointer py-1 ${
               currentRoute === 'home' ? 'text-[#C5A059] font-bold border-b-2 border-[#C5A059]' : ''
             }`}
           >
             Home
-          </button>
+          </a>
 
           {/* Services Dropdown */}
           <div
@@ -122,9 +124,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                   Embassy-Optimized Visas
                 </div>
                 {VISA_SERVICES.map((svc) => (
-                  <button
+                  <a
                     key={svc.slug}
-                    onClick={() => handleNav(`service-${svc.slug}`)}
+                    href={`#service-${svc.slug}`}
+                    onClick={(e) => { e.preventDefault(); handleNav(`service-${svc.slug}`); }}
                     className="w-full text-left px-4 py-2.5 hover:bg-slate-50 transition-colors flex items-center justify-between group cursor-pointer"
                   >
                     <div>
@@ -138,58 +141,74 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <span className="text-[10px] font-bold bg-[#C5A059]/15 text-[#9A7420] px-2 py-0.5 rounded border border-[#C5A059]/30">
                       {svc.acceptanceRate}
                     </span>
-                  </button>
+                  </a>
                 ))}
               </div>
             )}
           </div>
 
-          <button
-            onClick={() => handleNav('document-portal')}
+          <a
+            href="#document-portal"
+            onClick={(e) => { e.preventDefault(); handleNav('document-portal'); }}
             className={`whitespace-nowrap flex items-center gap-1.5 transition-colors hover:text-[#C5A059] cursor-pointer py-1 ${
               currentRoute === 'document-portal' ? 'text-[#C5A059] font-bold border-b-2 border-[#C5A059]' : ''
             }`}
           >
             <FileText className="w-3.5 h-3.5 text-[#C5A059]" />
             <span>Document Portal</span>
-          </button>
+          </a>
 
-          <button
-            onClick={() => handleNav('assessment')}
+          <a
+            href="#eligibility-calculator"
+            onClick={(e) => { e.preventDefault(); handleNav('assessment'); }}
             className={`whitespace-nowrap transition-colors hover:text-[#C5A059] cursor-pointer py-1 ${
               currentRoute === 'assessment' ? 'text-[#C5A059] font-bold border-b-2 border-[#C5A059]' : ''
             }`}
           >
             Eligibility Check
-          </button>
+          </a>
 
-          <button
-            onClick={() => handleNav('ai-file-assistant')}
+          <a
+            href="#ai-builder"
+            onClick={(e) => { e.preventDefault(); handleNav('ai-file-assistant'); }}
             className={`whitespace-nowrap flex items-center gap-1 transition-colors hover:text-[#C5A059] cursor-pointer py-1 ${
               currentRoute === 'ai-file-assistant' ? 'text-[#C5A059] font-bold border-b-2 border-[#C5A059]' : ''
             }`}
           >
             <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
             <span>AI File Builder</span>
-          </button>
+          </a>
 
-          <button
-            onClick={() => handleNav('about')}
+          <a
+            href="#blogs"
+            onClick={(e) => { e.preventDefault(); handleNav('blogs'); }}
+            className={`whitespace-nowrap flex items-center gap-1 transition-colors hover:text-[#C5A059] cursor-pointer py-1 ${
+              currentRoute === 'blogs' || currentRoute.startsWith('blog-') ? 'text-[#C5A059] font-bold border-b-2 border-[#C5A059]' : ''
+            }`}
+          >
+            <BookOpen className="w-3.5 h-3.5 text-[#C5A059]" />
+            <span>Guides &amp; Blog</span>
+          </a>
+
+          <a
+            href="#about"
+            onClick={(e) => { e.preventDefault(); handleNav('about'); }}
             className={`whitespace-nowrap transition-colors hover:text-[#C5A059] cursor-pointer py-1 ${
               currentRoute === 'about' ? 'text-[#C5A059] font-bold border-b-2 border-[#C5A059]' : ''
             }`}
           >
             About Us
-          </button>
+          </a>
 
-          <button
-            onClick={() => handleNav('contact')}
+          <a
+            href="#contact"
+            onClick={(e) => { e.preventDefault(); handleNav('contact'); }}
             className={`whitespace-nowrap transition-colors hover:text-[#C5A059] cursor-pointer py-1 ${
               currentRoute === 'contact' ? 'text-[#C5A059] font-bold border-b-2 border-[#C5A059]' : ''
             }`}
           >
             Contact
-          </button>
+          </a>
         </nav>
 
         {/* Action Buttons */}
@@ -225,65 +244,81 @@ export const Navbar: React.FC<NavbarProps> = ({
       {mobileMenuOpen && (
         <div className="lg:hidden bg-white border-b border-slate-200 px-4 py-4 space-y-3 shadow-xl animate-in slide-in-from-top duration-200">
           <div className="grid grid-cols-1 gap-2 font-medium text-[#042354] text-sm">
-            <button
-              onClick={() => handleNav('home')}
+            <a
+              href="#home"
+              onClick={(e) => { e.preventDefault(); handleNav('home'); }}
               className="text-left px-3 py-2 rounded-lg hover:bg-slate-50 font-semibold"
             >
               Home
-            </button>
+            </a>
 
             <div className="px-3 py-1 text-xs font-bold text-slate-400 uppercase">
               Our Visa Services
             </div>
             {VISA_SERVICES.map((svc) => (
-              <button
+              <a
                 key={svc.slug}
-                onClick={() => handleNav(`service-${svc.slug}`)}
+                href={`#service-${svc.slug}`}
+                onClick={(e) => { e.preventDefault(); handleNav(`service-${svc.slug}`); }}
                 className="text-left px-5 py-1.5 text-xs text-[#042354] hover:text-[#C5A059] hover:bg-slate-50 flex items-center justify-between"
               >
                 <span>{svc.shortTitle}</span>
                 <span className="text-[10px] bg-[#C5A059]/15 text-[#9A7420] px-1.5 py-0.5 rounded font-semibold border border-[#C5A059]/30">
                   {svc.acceptanceRate}
                 </span>
-              </button>
+              </a>
             ))}
 
-            <button
-              onClick={() => handleNav('document-portal')}
+            <a
+              href="#document-portal"
+              onClick={(e) => { e.preventDefault(); handleNav('document-portal'); }}
               className="text-left px-3 py-2 rounded-lg hover:bg-slate-50 flex items-center gap-2 text-[#9A7420] font-semibold"
             >
               <FileText className="w-4 h-4" />
               <span>Document Submission Portal</span>
-            </button>
+            </a>
 
-            <button
-              onClick={() => handleNav('assessment')}
+            <a
+              href="#eligibility-calculator"
+              onClick={(e) => { e.preventDefault(); handleNav('assessment'); }}
               className="text-left px-3 py-2 rounded-lg hover:bg-slate-50"
             >
               Eligibility Calculator
-            </button>
+            </a>
 
-            <button
-              onClick={() => handleNav('ai-file-assistant')}
+            <a
+              href="#ai-builder"
+              onClick={(e) => { e.preventDefault(); handleNav('ai-file-assistant'); }}
               className="text-left px-3 py-2 rounded-lg hover:bg-slate-50 flex items-center gap-2"
             >
               <Sparkles className="w-4 h-4 text-[#C5A059]" />
               <span>AI Embassy Cover Letter Generator</span>
-            </button>
+            </a>
 
-            <button
-              onClick={() => handleNav('about')}
+            <a
+              href="#blogs"
+              onClick={(e) => { e.preventDefault(); handleNav('blogs'); }}
+              className="text-left px-3 py-2 rounded-lg hover:bg-slate-50 flex items-center gap-2 text-[#042354] font-semibold"
+            >
+              <BookOpen className="w-4 h-4 text-[#C5A059]" />
+              <span>Visa Guides &amp; Knowledge Hub</span>
+            </a>
+
+            <a
+              href="#about"
+              onClick={(e) => { e.preventDefault(); handleNav('about'); }}
               className="text-left px-3 py-2 rounded-lg hover:bg-slate-50"
             >
               About VartiMax
-            </button>
+            </a>
 
-            <button
-              onClick={() => handleNav('contact')}
+            <a
+              href="#contact"
+              onClick={(e) => { e.preventDefault(); handleNav('contact'); }}
               className="text-left px-3 py-2 rounded-lg hover:bg-slate-50"
             >
-              Contact Us & Office Map
-            </button>
+              Contact Us &amp; Office Map
+            </a>
           </div>
 
           <div className="pt-3 border-t border-slate-200 flex flex-col gap-2">

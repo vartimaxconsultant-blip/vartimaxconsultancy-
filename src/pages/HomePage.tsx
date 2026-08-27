@@ -17,10 +17,13 @@ import {
   Briefcase,
   Compass,
   FileCheck2,
-  Clock
+  Clock,
+  BookOpen,
+  Calendar
 } from 'lucide-react';
 import { VISA_SERVICES } from '../data/servicesData';
 import { TESTIMONIALS } from '../data/testimonialsData';
+import { BLOG_POSTS } from '../data/blogsData';
 import { QuickAssessmentWidget } from '../components/QuickAssessmentWidget';
 import { SEO_IMAGES } from '../data/seoImages';
 
@@ -544,7 +547,108 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </section>
 
-      {/* 7. ISLAMABAD HEADQUARTERS MAP & CONSULTATION BANNER WITH LOCAL SEO PHOTOGRAPH */}
+      {/* 7. VISA KNOWLEDGE HUB & SEO BLOG GUIDES SECTION */}
+      <section className="py-16 px-4 sm:px-8 bg-[#051C3A] border-b border-[#0C356A]">
+        <div className="max-w-7xl mx-auto space-y-10">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#C5A059] bg-[#C5A059]/20 px-3 py-1 rounded-full border border-[#C5A059]/40 mb-2">
+                <BookOpen className="w-3.5 h-3.5 text-[#C5A059]" />
+                <span>EMBASSY FILE KNOWLEDGE HUB & BLOG</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
+                Latest Visa Guides & Embassy Filing Insights
+              </h2>
+              <p className="text-xs sm:text-sm text-[#93C5FD]/80 pt-1 max-w-2xl">
+                Read authoritative guides on Schengen bank statements, Canada SDS rules, US B1/B2 interviews, and visa refusal remedies.
+              </p>
+            </div>
+
+            <button
+              onClick={() => onNavigate('blogs')}
+              className="inline-flex items-center gap-2 text-xs font-bold bg-[#C5A059] hover:bg-[#D4AF37] text-[#042354] px-4 py-2.5 rounded-xl shadow-md transition-all cursor-pointer shrink-0"
+            >
+              <span>View All Guides & Articles</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {BLOG_POSTS.slice(0, 3).map((post) => (
+              <article
+                key={post.id}
+                onClick={() => onNavigate(`blog-${post.slug}`)}
+                className="bg-[#07244A] rounded-2xl overflow-hidden border border-[#15488A] hover:border-[#C5A059] transition-all duration-200 shadow-md hover:shadow-xl flex flex-col justify-between group cursor-pointer"
+              >
+                <div>
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={post.featuredImage.src}
+                      alt={post.featuredImage.alt}
+                      title={post.featuredImage.title}
+                      width={600}
+                      height={400}
+                      loading="lazy"
+                      decoding="async"
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute top-3 left-3 bg-[#042354]/90 backdrop-blur-sm text-[#C5A059] border border-[#C5A059]/40 text-[10px] font-bold px-2.5 py-1 rounded-full">
+                      {post.category}
+                    </div>
+                  </div>
+
+                  <div className="p-5 space-y-3">
+                    <div className="flex items-center gap-3 text-[11px] text-[#93C5FD]">
+                      <span className="flex items-center gap-1">
+                        <Calendar className="w-3 h-3 text-[#C5A059]" />
+                        {post.publishedDate}
+                      </span>
+                      <span>•</span>
+                      <span className="flex items-center gap-1">
+                        <Clock className="w-3 h-3 text-[#C5A059]" />
+                        {post.readTime}
+                      </span>
+                    </div>
+
+                    <h3 className="text-base font-bold text-white group-hover:text-[#C5A059] transition-colors leading-snug line-clamp-2">
+                      {post.title}
+                    </h3>
+
+                    <p className="text-xs text-[#D1D5DB] leading-relaxed line-clamp-2">
+                      {post.excerpt}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="px-5 py-4 border-t border-[#123A6D] flex items-center justify-between bg-[#061F40]/50">
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-full bg-[#042354] border border-[#C5A059] overflow-hidden">
+                      <img
+                        src={post.author.avatar}
+                        alt={post.author.name}
+                        width={40}
+                        height={40}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <span className="text-xs font-medium text-white truncate max-w-[120px]">
+                      {post.author.name}
+                    </span>
+                  </div>
+
+                  <span className="text-xs font-bold text-[#C5A059] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                    <span>Read Guide</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 8. ISLAMABAD HEADQUARTERS MAP & CONSULTATION BANNER WITH LOCAL SEO PHOTOGRAPH */}
       <section className="py-16 px-4 sm:px-8 bg-[#092E5E] text-white">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-6 space-y-5">

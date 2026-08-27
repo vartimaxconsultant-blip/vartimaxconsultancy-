@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="favNavy" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#041B3B" />
+      <stop offset="100%" stop-color="#092E5E" />
+    </linearGradient>
+    <linearGradient id="favGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#BF8B2A" />
+      <stop offset="50%" stop-color="#F5CE6D" />
+      <stop offset="100%" stop-color="#C5A059" />
+    </linearGradient>
+  </defs>
+  <!-- Background Rounded Shield -->
+  <rect width="64" height="64" rx="14" fill="url(#favNavy)" stroke="#C5A059" stroke-width="2" />
+  
+  <!-- Globe Grid Lines -->
+  <circle cx="32" cy="32" r="22" fill="none" stroke="#93C5FD" stroke-width="1.2" opacity="0.3" />
+  <ellipse cx="32" cy="32" rx="12" ry="22" fill="none" stroke="#93C5FD" stroke-width="1.2" stroke-dasharray="2 2" opacity="0.35" />
+  <line x1="10" y1="32" x2="54" y2="32" stroke="#93C5FD" stroke-width="1.2" opacity="0.3" />
+
+  <!-- Gold V Stylized Letter -->
+  <path d="M15 16 L28 48 L36 48 L49 16 L41 16 L32 40 L23 16 Z" fill="url(#favGold)" />
+
+  <!-- Golden Orbit Arc & Soaring Airplane -->
+  <path d="M16 42 Q32 50 48 30" fill="none" stroke="#F5CE6D" stroke-width="2" stroke-linecap="round" />
+  <g transform="translate(49, 28) rotate(-35) scale(0.6)">
+    <path d="M0,-12 L4,10 L0,7 L-4,10 Z" fill="#FFFFFF" />
+    <path d="M0,0 L12,6 L12,9 L0,4 L-12,9 L-12,6 Z" fill="#F5CE6D" />
+  </g>
+</svg>

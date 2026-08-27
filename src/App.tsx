@@ -12,9 +12,12 @@ import { DocumentPortalPage } from './pages/DocumentPortalPage';
 import { AiFileBuilderPage } from './pages/AiFileBuilderPage';
 import { AboutPage } from './pages/AboutPage';
 import { ContactPage } from './pages/ContactPage';
+import { BlogsPage } from './pages/BlogsPage';
+import { BlogDetailPage } from './pages/BlogDetailPage';
 import { QuickAssessmentWidget } from './components/QuickAssessmentWidget';
 
 import { VISA_SERVICES } from './data/servicesData';
+import { BLOG_POSTS } from './data/blogsData';
 import { VisaCategory } from './types';
 
 export function App() {
@@ -77,6 +80,15 @@ export function App() {
     ? VISA_SERVICES.find((s) => s.slug === selectedServiceSlug)
     : null;
 
+  // Find active blog post if route starts with 'blog-'
+  const selectedBlogSlug = currentRoute.startsWith('blog-')
+    ? currentRoute.replace('blog-', '')
+    : null;
+
+  const currentBlogPost = selectedBlogSlug
+    ? BLOG_POSTS.find((b) => b.slug === selectedBlogSlug)
+    : null;
+
   return (
     <div className="min-h-screen flex flex-col bg-[#092E5E] text-[#F3F4F6] font-sans antialiased selection:bg-[#C5A059] selection:text-[#092E5E]">
       {/* Navigation Header */}
@@ -103,6 +115,21 @@ export function App() {
               handleOpenConsultation(currentService.title, currentService.category)
             }
             onNavigateToPortal={() => handleNavigate('document-portal')}
+          />
+        )}
+
+        {currentRoute === 'blogs' && (
+          <BlogsPage
+            onNavigate={handleNavigate}
+            onOpenConsultation={() => handleOpenConsultation()}
+          />
+        )}
+
+        {currentBlogPost && (
+          <BlogDetailPage
+            post={currentBlogPost}
+            onNavigate={handleNavigate}
+            onOpenConsultation={(country) => handleOpenConsultation(country)}
           />
         )}
 

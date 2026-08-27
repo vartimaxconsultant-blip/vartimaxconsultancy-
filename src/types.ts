@@ -104,3 +104,43 @@ export interface QuickAssessmentResult {
   recommendations: string[];
   customRoadmap: string[];
 }
+
+export interface BlogArticleSection {
+  heading: string;
+  subheading?: string;
+  paragraphs: string[];
+  bulletPoints?: string[];
+  calloutBox?: {
+    type: 'tip' | 'warning' | 'info';
+    text: string;
+  };
+}
+
+export interface BlogPost {
+  id: string;
+  slug: string;
+  title: string;
+  metaTitle: string;
+  metaDescription: string;
+  excerpt: string;
+  category: 'Schengen Visa' | 'Canada Visa' | 'USA Visa' | 'UK Study' | 'Umrah & Saudi' | 'Refusal Solutions';
+  author: {
+    name: string;
+    role: string;
+    avatar: string;
+  };
+  publishedDate: string;
+  readTime: string;
+  tags: string[];
+  featuredImage: {
+    src: string;
+    alt: string;
+    title: string;
+  };
+  keyTakeaways: string[];
+  tableOfContents: string[];
+  sections: BlogArticleSection[];
+  faqs: { question: string; answer: string }[];
+  targetCountry: string;
+  relatedServiceSlug?: string;
+}

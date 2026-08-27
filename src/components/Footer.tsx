@@ -100,8 +100,9 @@ export const Footer: React.FC<FooterProps> = ({
           <ul className="space-y-2.5 text-xs text-[#93C5FD]/80">
             {VISA_SERVICES.map((s) => (
               <li key={s.slug}>
-                <button
-                  onClick={() => handleNav(`service-${s.slug}`)}
+                <a
+                  href={`#service-${s.slug}`}
+                  onClick={(e) => { e.preventDefault(); handleNav(`service-${s.slug}`); }}
                   className="hover:text-[#C5A059] transition-colors text-left flex items-center justify-between w-full group cursor-pointer"
                 >
                   <span className="group-hover:translate-x-1 transition-transform">
@@ -110,17 +111,18 @@ export const Footer: React.FC<FooterProps> = ({
                   <span className="text-[10px] text-[#93C5FD]/60 font-mono">
                     {s.acceptanceRate}
                   </span>
-                </button>
+                </a>
               </li>
             ))}
             <li>
-              <button
-                onClick={() => handleNav('document-portal')}
+              <a
+                href="#document-portal"
+                onClick={(e) => { e.preventDefault(); handleNav('document-portal'); }}
                 className="text-[#C5A059] font-semibold hover:underline pt-1 inline-flex items-center gap-1 cursor-pointer"
               >
                 <span>Upload Documents to Portal</span>
                 <ExternalLink className="w-3 h-3" />
-              </button>
+              </a>
             </li>
           </ul>
         </div>
@@ -132,44 +134,59 @@ export const Footer: React.FC<FooterProps> = ({
           </h4>
           <ul className="space-y-2.5 text-xs text-[#93C5FD]/80">
             <li>
-              <button
-                onClick={() => handleNav('document-portal')}
-                className="hover:text-[#C5A059] transition-colors cursor-pointer text-left"
+              <a
+                href="#blogs"
+                onClick={(e) => { e.preventDefault(); handleNav('blogs'); }}
+                className="hover:text-[#C5A059] transition-colors cursor-pointer text-left font-semibold text-white flex items-center gap-1.5"
+              >
+                <span>Visa Guides &amp; Knowledge Hub</span>
+                <span className="text-[10px] bg-[#C5A059]/20 text-[#C5A059] px-1.5 py-0.5 rounded border border-[#C5A059]/40">SEO Hub</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#document-portal"
+                onClick={(e) => { e.preventDefault(); handleNav('document-portal'); }}
+                className="hover:text-[#C5A059] transition-colors cursor-pointer text-left block"
               >
                 Client Document Submission Portal
-              </button>
+              </a>
             </li>
             <li>
-              <button
-                onClick={() => handleNav('assessment')}
-                className="hover:text-[#C5A059] transition-colors cursor-pointer text-left"
+              <a
+                href="#eligibility-calculator"
+                onClick={(e) => { e.preventDefault(); handleNav('assessment'); }}
+                className="hover:text-[#C5A059] transition-colors cursor-pointer text-left block"
               >
                 Visa Success Probability Calculator
-              </button>
+              </a>
             </li>
             <li>
-              <button
-                onClick={() => handleNav('ai-file-assistant')}
-                className="hover:text-[#C5A059] transition-colors cursor-pointer text-left"
+              <a
+                href="#ai-builder"
+                onClick={(e) => { e.preventDefault(); handleNav('ai-file-assistant'); }}
+                className="hover:text-[#C5A059] transition-colors cursor-pointer text-left block"
               >
                 AI Embassy Cover Letter Generator
-              </button>
+              </a>
             </li>
             <li>
-              <button
-                onClick={() => handleNav('about')}
-                className="hover:text-[#C5A059] transition-colors cursor-pointer text-left"
+              <a
+                href="#about"
+                onClick={(e) => { e.preventDefault(); handleNav('about'); }}
+                className="hover:text-[#C5A059] transition-colors cursor-pointer text-left block"
               >
                 About Our 5+ Year Track Record
-              </button>
+              </a>
             </li>
             <li>
-              <button
-                onClick={() => handleNav('contact')}
-                className="hover:text-[#C5A059] transition-colors cursor-pointer text-left"
+              <a
+                href="#contact"
+                onClick={(e) => { e.preventDefault(); handleNav('contact'); }}
+                className="hover:text-[#C5A059] transition-colors cursor-pointer text-left block"
               >
-                Islamabad Office Directions & Timings
-              </button>
+                Islamabad Office Directions &amp; Timings
+              </a>
             </li>
             <li className="pt-2">
               <button
