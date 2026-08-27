@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" width="100%" height="100%">
+  <defs>
+    <!-- Navy Brand Gradient -->
+    <linearGradient id="navyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#041b3b" />
+      <stop offset="50%" stop-color="#042354" />
+      <stop offset="100%" stop-color="#0b356d" />
+    </linearGradient>
+
+    <!-- Gold Brand Gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#bf8b2a" />
+      <stop offset="35%" stop-color="#df9b35" />
+      <stop offset="70%" stop-color="#f5ce6d" />
+      <stop offset="100%" stop-color="#c5a059" />
+    </linearGradient>
+
+    <!-- Metallic Gold Stroke -->
+    <linearGradient id="goldStroke" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d4af37" />
+      <stop offset="50%" stop-color="#f3d078" />
+      <stop offset="100%" stop-color="#aa7c1e" />
+    </linearGradient>
+
+    <filter id="subtleShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15" />
+    </filter>
+  </defs>
+
+  <!-- Left Emblem Group -->
+  <g transform="translate(45, 30)">
+    <!-- Globe Circle -->
+    <circle cx="150" cy="180" r="105" fill="#ffffff" stroke="#042354" stroke-width="6" />
+    
+    <!-- Globe Inner Continents & Grids -->
+    <!-- Latitudes/Longitudes -->
+    <ellipse cx="150" cy="180" rx="58" ry="105" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 3" opacity="0.6"/>
+    <line x1="45" y1="180" x2="255" y2="180" stroke="#94a3b8" stroke-width="2" opacity="0.6"/>
+    <ellipse cx="150" cy="180" rx="105" ry="55" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 3" opacity="0.6"/>
+    
+    <!-- Stylized Americas & Afro-Eurasia continents -->
+    <path d="M90,140 Q105,120 120,135 Q135,160 115,190 Q95,220 110,245 Q90,240 80,210 Q70,180 90,140 Z" fill="#042354" opacity="0.95"/>
+    <path d="M165,115 Q190,105 210,125 Q230,150 215,180 Q190,195 175,175 Q160,150 165,115 Z" fill="#042354" opacity="0.95"/>
+    <path d="M185,190 Q215,200 225,230 Q210,255 190,250 Q175,230 185,190 Z" fill="#042354" opacity="0.95"/>
+
+    <!-- Giant Stylized V Left Wing (Navy) -->
+    <path d="M50,45 L118,45 L175,250 L125,250 Z" fill="url(#navyGrad)" filter="url(#subtleShadow)" />
+    
+    <!-- Stylized V Right Wing (Gold) -->
+    <path d="M245,45 L180,45 L155,165 L190,165 Z" fill="url(#goldGrad)" filter="url(#subtleShadow)" />
+
+    <!-- Swoosh Arc Trajectory (Gold to Airplane) -->
+    <path d="M55,230 C65,275 140,285 210,230 C240,205 270,165 300,105" fill="none" stroke="url(#goldStroke)" stroke-width="9" stroke-linecap="round"/>
+    <path d="M68,245 C85,285 150,290 215,235 C245,210 275,165 305,108" fill="none" stroke="#fef08a" stroke-width="2.5" opacity="0.8"/>
+
+    <!-- Airplane Soaring (Navy) -->
+    <g transform="translate(300, 105) rotate(42)">
+      <!-- Fuselage -->
+      <path d="M0,-25 C4,-25 6,-15 6,25 L-6,25 C-6,-15 -4,-25 0,-25 Z" fill="#042354"/>
+      <!-- Main Wings -->
+      <path d="M0,-2 L28,12 L28,18 L0,8 L-28,18 L-28,12 Z" fill="#042354"/>
+      <!-- Tail Wing -->
+      <path d="M0,18 L12,25 L12,28 L0,24 L-12,28 L-12,25 Z" fill="#042354"/>
+    </g>
+  </g>
+
+  <!-- Vertical Divider Line -->
+  <line x1="365" y1="90" x2="365" y2="280" stroke="#042354" stroke-width="3.5" stroke-linecap="round" />
+
+  <!-- Typography Right Side -->
+  <g transform="translate(395, 0)">
+    <!-- VartiMax Main Heading -->
+    <text x="0" y="195" font-family="'Plus Jakarta Sans', 'Outfit', sans-serif" font-weight="800" font-size="94" letter-spacing="-1">
+      <tspan fill="#042354">Varti</tspan><tspan fill="url(#goldGrad)">Max</tspan>
+    </text>
+
+    <!-- Sub Divider Bar with CONSULTANT -->
+    <line x1="0" y1="230" x2="65" y2="230" stroke="url(#goldGrad)" stroke-width="3" stroke-linecap="round"/>
+    <text x="80" y="238" font-family="'Plus Jakarta Sans', 'Outfit', sans-serif" font-weight="700" font-size="28" fill="#042354" letter-spacing="11">CONSULTANT</text>
+    <line x1="420" y1="230" x2="480" y2="230" stroke="url(#goldGrad)" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Tagline Subtext -->
+    <text x="35" y="275" font-family="'Plus Jakarta Sans', 'Outfit', sans-serif" font-style="italic" font-weight="500" font-size="26" fill="#042354" letter-spacing="0.5">
+      Your Global Journey, Our Expertise.
+    </text>
+  </g>
+</svg>
