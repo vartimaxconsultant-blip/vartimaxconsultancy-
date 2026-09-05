@@ -4,6 +4,10 @@ import { Footer } from './components/Footer';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { LeadCaptureModal } from './components/LeadCaptureModal';
 import { GoogleSheetsIntegrationModal } from './components/GoogleSheetsIntegrationModal';
+import { AgentNotificationProvider } from './context/AgentNotificationContext';
+import { AgentNotificationPopup } from './components/AgentNotificationPopup';
+import { AgentNotificationDrawer } from './components/AgentNotificationDrawer';
+import { AgentQueryDetailModal } from './components/AgentQueryDetailModal';
 
 // Pages
 import { HomePage } from './pages/HomePage';
@@ -14,13 +18,14 @@ import { AboutPage } from './pages/AboutPage';
 import { ContactPage } from './pages/ContactPage';
 import { BlogsPage } from './pages/BlogsPage';
 import { BlogDetailPage } from './pages/BlogDetailPage';
+import { CrmPortalPage } from './pages/CrmPortalPage';
 import { QuickAssessmentWidget } from './components/QuickAssessmentWidget';
 
 import { VISA_SERVICES } from './data/servicesData';
 import { BLOG_POSTS } from './data/blogsData';
 import { VisaCategory } from './types';
 
-export function App() {
+function AppContent() {
   const [currentRoute, setCurrentRoute] = useState<string>('home');
   const [leadModalOpen, setLeadModalOpen] = useState(false);
   const [googleSheetsModalOpen, setGoogleSheetsModalOpen] = useState(false);
@@ -158,6 +163,10 @@ export function App() {
         )}
 
         {currentRoute === 'contact' && <ContactPage />}
+
+        {currentRoute === 'crm' && (
+          <CrmPortalPage onOpenConsultation={() => handleOpenConsultation()} />
+        )}
       </main>
 
       {/* Footer */}
@@ -183,8 +192,26 @@ export function App() {
         isOpen={googleSheetsModalOpen}
         onClose={() => setGoogleSheetsModalOpen(false)}
       />
+
+      {/* Agent Live Notification Floating Alert Toast */}
+      <AgentNotificationPopup />
+
+      {/* Agent Live Inquiries & Dossier Inbox Drawer */}
+      <AgentNotificationDrawer onNavigate={handleNavigate} />
+
+      {/* Agent Query / Dossier Detail & Outreach Modal */}
+      <AgentQueryDetailModal />
     </div>
   );
 }
 
+export function App() {
+  return (
+    <AgentNotificationProvider>
+      <AppContent />
+    </AgentNotificationProvider>
+  );
+}
+
 export default App;
+

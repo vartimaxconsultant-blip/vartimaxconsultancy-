@@ -9,6 +9,7 @@ import {
   Navigation
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { notificationBus } from '../utils/notificationBus';
 
 export const ContactPage: React.FC = () => {
   const [fullName, setFullName] = useState('');
@@ -25,7 +26,7 @@ export const ContactPage: React.FC = () => {
 
     setIsSubmitting(true);
     try {
-      await fetch('/api/leads', {
+      const res = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -37,10 +38,44 @@ export const ContactPage: React.FC = () => {
         })
       });
 
+      const data = await res.json();
+      if (data?.notification) {
+        notificationBus.emit(data.notification);
+      } else {
+        notificationBus.emit({
+          id: `NOTIF-${Date.now()}`,
+          type: 'contact_query',
+          title: 'Direct Website Contact Query',
+          clientName: fullName,
+          whatsapp,
+          targetCountry,
+          visaType: 'General Inquiry',
+          summary: `${fullName} sent a direct message from the Islamabad Contact page: "${message || 'Inquiry regarding visa guidance'}"`,
+          details: { intakeDate: message },
+          createdAt: new Date().toISOString(),
+          read: false,
+          contacted: false
+        });
+      }
+
       confetti({ particleCount: 70, spread: 60, origin: { y: 0.6 } });
       setIsSuccess(true);
     } catch (err) {
       console.error(err);
+      notificationBus.emit({
+        id: `NOTIF-${Date.now()}`,
+        type: 'contact_query',
+        title: 'Direct Website Contact Query',
+        clientName: fullName,
+        whatsapp,
+        targetCountry,
+        visaType: 'General Inquiry',
+        summary: `${fullName} sent a direct message from the Islamabad Contact page.`,
+        details: { intakeDate: message },
+        createdAt: new Date().toISOString(),
+        read: false,
+        contacted: false
+      });
       setIsSuccess(true);
     } finally {
       setIsSubmitting(false);

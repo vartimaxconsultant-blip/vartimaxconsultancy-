@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { X, Send, ShieldCheck, CheckCircle, Sparkles, Phone, Globe, Calendar, User } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { VisaCategory } from '../types';
+import { notificationBus } from '../utils/notificationBus';
 
 interface LeadCaptureModalProps {
   isOpen: boolean;
@@ -38,7 +39,7 @@ export const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
     setIsSubmitting(true);
     try {
       // 1. Post to Server endpoint
-      await fetch('/api/leads', {
+      const res = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -50,6 +51,26 @@ export const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
         })
       });
 
+      const data = await res.json();
+      if (data?.notification) {
+        notificationBus.emit(data.notification);
+      } else {
+        notificationBus.emit({
+          id: `NOTIF-${Date.now()}`,
+          type: 'lead_inquiry',
+          title: 'New Visa Consultation Lead',
+          clientName: fullName,
+          whatsapp,
+          targetCountry: targetCountry || 'General',
+          visaType,
+          summary: `${fullName} requested consultation for ${targetCountry} (${visaType}).`,
+          details: { intakeDate },
+          createdAt: new Date().toISOString(),
+          read: false,
+          contacted: false
+        });
+      }
+
       // 2. Trigger celebratory confetti
       confetti({
         particleCount: 80,
@@ -60,6 +81,20 @@ export const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
       setIsSuccess(true);
     } catch (error) {
       console.error('Lead submission failed:', error);
+      notificationBus.emit({
+        id: `NOTIF-${Date.now()}`,
+        type: 'lead_inquiry',
+        title: 'New Visa Consultation Lead',
+        clientName: fullName,
+        whatsapp,
+        targetCountry: targetCountry || 'General',
+        visaType,
+        summary: `${fullName} requested consultation for ${targetCountry} (${visaType}).`,
+        details: { intakeDate },
+        createdAt: new Date().toISOString(),
+        read: false,
+        contacted: false
+      });
       setIsSuccess(true); // Graceful fallback
     } finally {
       setIsSubmitting(false);

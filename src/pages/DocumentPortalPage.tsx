@@ -22,6 +22,7 @@ import {
 import confetti from 'canvas-confetti';
 import { DOCUMENT_REQUIREMENTS } from '../data/requirementsData';
 import { VisaCategory, UploadedFileDoc, ClientApplication } from '../types';
+import { notificationBus } from '../utils/notificationBus';
 
 interface DocumentPortalPageProps {
   onOpenConsultation: () => void;
@@ -109,8 +110,9 @@ export const DocumentPortalPage: React.FC<DocumentPortalPageProps> = ({
     setIsSubmitting(true);
     setUploadError(null);
 
+    const docsArray: UploadedFileDoc[] = Object.values(uploadedFiles);
+
     try {
-      const docsArray = Object.values(uploadedFiles);
       const payload = {
         fullName,
         whatsapp,
@@ -131,6 +133,31 @@ export const DocumentPortalPage: React.FC<DocumentPortalPageProps> = ({
       const data = await res.json();
       if (data.success && data.submission) {
         setSubmittedApp(data.submission);
+
+        if (data.notification) {
+          notificationBus.emit(data.notification);
+        } else {
+          notificationBus.emit({
+            id: `NOTIF-${Date.now()}`,
+            type: 'document_upload',
+            title: 'Client Dossier Uploaded',
+            clientName: fullName,
+            whatsapp,
+            targetCountry,
+            visaType: selectedCategory,
+            summary: `${fullName} uploaded ${docsArray.length} documents for ${targetCountry} (${selectedCategory}). Ref: ${data.submission.referenceId}`,
+            details: {
+              referenceId: data.submission.referenceId,
+              passportNumber,
+              intakeDate,
+              documentsList: docsArray.map((d) => `${d.requirementTitle} (${d.fileName})`)
+            },
+            createdAt: new Date().toISOString(),
+            read: false,
+            contacted: false
+          });
+        }
+
         confetti({
           particleCount: 100,
           spread: 70,
@@ -158,6 +185,27 @@ export const DocumentPortalPage: React.FC<DocumentPortalPageProps> = ({
         updatedAt: new Date().toISOString()
       };
       setSubmittedApp(fallbackApp);
+
+      notificationBus.emit({
+        id: `NOTIF-${Date.now()}`,
+        type: 'document_upload',
+        title: 'Client Dossier Uploaded',
+        clientName: fullName,
+        whatsapp,
+        targetCountry,
+        visaType: selectedCategory,
+        summary: `${fullName} uploaded ${docsArray.length} documents for ${targetCountry} (${selectedCategory}). Ref: ${mockRef}`,
+        details: {
+          referenceId: mockRef,
+          passportNumber,
+          intakeDate,
+          documentsList: docsArray.map((d) => `${d.requirementTitle} (${d.fileName})`)
+        },
+        createdAt: new Date().toISOString(),
+        read: false,
+        contacted: false
+      });
+
       confetti({ particleCount: 80 });
     } finally {
       setIsSubmitting(false);

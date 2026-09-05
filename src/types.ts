@@ -144,3 +144,129 @@ export interface BlogPost {
   targetCountry: string;
   relatedServiceSlug?: string;
 }
+
+export interface AgentNotification {
+  id: string;
+  type: 'lead_inquiry' | 'document_upload' | 'contact_query' | 'ai_file_request' | 'followup_reminder';
+  title: string;
+  clientName: string;
+  whatsapp: string;
+  email?: string;
+  targetCountry: string;
+  visaType?: string;
+  summary: string;
+  details?: {
+    referenceId?: string;
+    intakeDate?: string;
+    passportNumber?: string;
+    documentsCount?: number;
+    documentsList?: string[];
+    message?: string;
+    agentId?: string;
+    leadId?: string;
+    daysInactive?: number;
+  };
+  createdAt: string;
+  read: boolean;
+  contacted: boolean;
+}
+
+export type CRMLeadStatus = 
+  | 'new'
+  | 'assigned'
+  | 'contacted'
+  | 'docs_pending'
+  | 'embassy_ready'
+  | 'in_progress'
+  | 'approved'
+  | 'rejected';
+
+export type CRMActivityType =
+  | 'whatsapp'
+  | 'call'
+  | 'meeting'
+  | 'docs_review'
+  | 'embassy_slot'
+  | 'note'
+  | 'status_change';
+
+export interface LeadActivity {
+  id: string;
+  leadId: string;
+  agentId: string;
+  agentName: string;
+  type: CRMActivityType;
+  note: string;
+  timestamp: string;
+}
+
+export interface CRMLeadRecord {
+  id: string;
+  fullName: string;
+  whatsapp: string;
+  email?: string;
+  targetCountry: string;
+  visaType: string;
+  intakeDate?: string;
+  createdAt: string;
+  status: CRMLeadStatus;
+  assignedAgentId: string; // 'unassigned' or agent ID like 'AGT-01'
+  assignedAgentName: string;
+  assignedAt?: string;
+  priority: 'normal' | 'high' | 'urgent';
+  lastActivityAt: string;
+  nextFollowUpDate: string;
+  isOverdueFollowUp?: boolean;
+  daysSinceLastActivity?: number;
+  notes?: string;
+  activities: LeadActivity[];
+  docReferenceId?: string;
+}
+
+export interface AgentProfile {
+  id: string; // e.g. 'AGT-01', 'ADMIN-01'
+  name: string;
+  email: string;
+  phone: string;
+  designation: string;
+  role: 'admin' | 'agent';
+  pin: string;
+  active: boolean;
+  createdAt: string;
+  assignedLeadsCount?: number;
+  completedLeadsCount?: number;
+  overdueCount?: number;
+}
+
+export interface CRMConfig {
+  autoAssignEnabled: boolean;
+  followUpIntervalDays: number;
+}
+
+export interface CRMStats {
+  totalLeads: number;
+  unassignedCount: number;
+  assignedCount: number;
+  inProgressCount: number;
+  approvedCount: number;
+  overdueFollowUpCount: number;
+  totalAgents: number;
+  activeAgents: number;
+  activitiesToday: number;
+}
+
+export interface AgentDailyReport {
+  id: string;
+  agentId: string;
+  agentName: string;
+  date: string;
+  summary: string;
+  callsCount: number;
+  whatsAppCount: number;
+  docsReviewedCount: number;
+  approvalsCount: number;
+  challengesFaced?: string;
+  tomorrowPlan?: string;
+  submittedAt: string;
+}
+

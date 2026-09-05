@@ -13,9 +13,12 @@ import {
   Search,
   Sparkles,
   Plane,
-  BookOpen
+  BookOpen,
+  BellRing,
+  Users
 } from 'lucide-react';
 import { VISA_SERVICES } from '../data/servicesData';
+import { useAgentNotifications } from '../context/AgentNotificationContext';
 
 interface NavbarProps {
   currentRoute: string;
@@ -30,6 +33,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const { unreadCount, setIsDrawerOpen } = useAgentNotifications();
 
   const handleNav = (route: string) => {
     onNavigate(route);
@@ -42,9 +46,9 @@ export const Navbar: React.FC<NavbarProps> = ({
     <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-sm transition-all duration-200">
       {/* Top Information Bar with Logo Navy Color */}
       <div className="bg-[#042354] text-[#E0E7FF] text-xs border-b border-[#031A3E] py-2 px-4 sm:px-8">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2.5">
           {/* Left contact info */}
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 sm:gap-6 text-[#E0E7FF]">
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 sm:gap-5 text-[#E0E7FF]">
             <a
               href="tel:+923401207525"
               className="flex items-center gap-1.5 hover:text-[#C5A059] transition-colors font-medium text-white"
@@ -59,22 +63,45 @@ export const Navbar: React.FC<NavbarProps> = ({
               <Mail className="w-3.5 h-3.5 text-[#C5A059]" />
               <span>vartimaxconsultant@gmail.com</span>
             </a>
-            <span className="hidden lg:flex items-center gap-1.5 text-[#BFDBFE]">
+            <span className="hidden xl:flex items-center gap-1.5 text-[#BFDBFE]">
               <MapPin className="w-3.5 h-3.5 text-[#C5A059]" />
               <span>Office 78, Basement, Gaga Downtown, Islamabad</span>
             </span>
           </div>
 
-          {/* Right Trust Badge & Opening Hours */}
-          <div className="flex items-center gap-4 text-xs">
-            <span className="inline-flex items-center gap-1 bg-[#C5A059]/20 text-[#F5CE6D] px-2.5 py-0.5 rounded-full border border-[#C5A059]/40 font-semibold">
+          {/* Right Action Area in Top Title Bar: CRM Portal & Book Consultation */}
+          <div className="flex items-center flex-wrap justify-center gap-2 sm:gap-3 text-xs">
+            <span className="hidden sm:inline-flex items-center gap-1 bg-[#C5A059]/20 text-[#F5CE6D] px-2.5 py-1 rounded-full border border-[#C5A059]/40 font-semibold text-[11px]">
               <ShieldCheck className="w-3.5 h-3.5 text-[#C5A059]" />
-              90% Visa Acceptance Rate
+              90% Visa Acceptance
             </span>
-            <span className="hidden sm:flex items-center gap-1 text-[#BFDBFE]">
-              <Clock className="w-3 h-3 text-[#C5A059]" />
-              Mon - Sat: 10:00 AM - 7:00 PM
-            </span>
+
+            {/* CRM Portal Button in Top Title Bar */}
+            <button
+              id="topbar-crm-portal-btn"
+              onClick={() => handleNav('crm')}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-bold text-xs transition-all cursor-pointer border ${
+                currentRoute === 'crm'
+                  ? 'bg-[#C5A059] text-[#042354] border-[#C5A059] shadow'
+                  : 'bg-white/10 hover:bg-[#C5A059] text-white hover:text-[#042354] border-white/25 hover:border-[#C5A059]'
+              }`}
+              title="Open CRM & Staff Workspace (Agent & Director Desks)"
+            >
+              <Users className="w-3.5 h-3.5 text-[#C5A059]" />
+              <span>CRM Portal</span>
+              <span className="text-[10px] bg-[#042354]/60 text-[#F5CE6D] px-1.5 py-0.2 rounded font-black">STAFF</span>
+            </button>
+
+            {/* Book Consultation Button in Top Title Bar */}
+            <button
+              id="topbar-book-consult-btn"
+              onClick={onOpenConsultation}
+              className="inline-flex items-center gap-1.5 bg-[#C5A059] hover:bg-[#D4AF37] text-[#042354] px-3.5 py-1.5 rounded-lg font-bold text-xs shadow-sm hover:shadow-md transition-all cursor-pointer"
+              title="Book Free 1-on-1 Visa Consultation"
+            >
+              <Plane className="w-3.5 h-3.5 text-[#042354]" />
+              <span>Book Consultation</span>
+            </button>
           </div>
         </div>
       </div>
@@ -211,33 +238,45 @@ export const Navbar: React.FC<NavbarProps> = ({
           </a>
         </nav>
 
-        {/* Action Buttons */}
-        <div className="hidden sm:flex items-center gap-3">
+        {/* Action Buttons in Menu Bar (Alerts & Tracking) */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* Agent Desk Bell Button with Live Badge */}
           <button
+            id="menubar-agent-alerts-btn"
+            onClick={() => setIsDrawerOpen(true)}
+            className="relative inline-flex items-center gap-1.5 text-xs font-bold text-[#042354] hover:text-[#C5A059] bg-[#C5A059]/15 hover:bg-[#C5A059]/25 border border-[#C5A059]/40 px-3 py-2 rounded-lg transition-all cursor-pointer shadow-sm group"
+            title="Agent Live Desk - View Incoming Client Submissions & Uploads"
+          >
+            <BellRing className={`w-4 h-4 text-[#C5A059] ${unreadCount > 0 ? 'animate-bounce' : ''}`} />
+            <span className="hidden md:inline font-bold">Alerts</span>
+            {unreadCount > 0 ? (
+              <span className="bg-red-500 text-white text-[10px] font-black px-1.5 py-0.5 rounded-full animate-pulse">
+                {unreadCount}
+              </span>
+            ) : (
+              <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+            )}
+          </button>
+
+          <button
+            id="menubar-track-app-btn"
             onClick={() => handleNav('document-portal')}
-            className="hidden xl:inline-flex items-center gap-1.5 text-xs font-bold text-[#042354] hover:text-[#C5A059] bg-slate-100 hover:bg-slate-200 border border-slate-200 px-3.5 py-2.5 rounded-lg transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#042354] hover:text-[#C5A059] bg-slate-100 hover:bg-slate-200 border border-slate-200 px-3 py-2 rounded-lg transition-colors cursor-pointer"
           >
             <Search className="w-3.5 h-3.5 text-[#C5A059]" />
-            <span>Track Application</span>
+            <span className="hidden sm:inline">Track Application</span>
+            <span className="sm:hidden">Track</span>
           </button>
 
+          {/* Mobile Menu Button */}
           <button
-            onClick={onOpenConsultation}
-            className="inline-flex items-center gap-2 bg-[#C5A059] hover:bg-[#D4AF37] text-[#042354] px-4 py-2.5 rounded-lg text-sm font-bold shadow-md shadow-[#C5A059]/20 hover:shadow-lg hover:shadow-[#C5A059]/30 transition-all cursor-pointer"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden p-2 rounded-lg text-[#042354] hover:bg-slate-100 focus:outline-none cursor-pointer"
+            aria-label="Toggle Navigation Menu"
           >
-            <Plane className="w-4 h-4 text-[#042354]" />
-            <span>Book Consultation</span>
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden p-2 rounded-lg text-[#042354] hover:bg-slate-100 focus:outline-none cursor-pointer"
-          aria-label="Toggle Navigation Menu"
-        >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
       </div>
 
       {/* Mobile Drawer */}
@@ -293,6 +332,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Sparkles className="w-4 h-4 text-[#C5A059]" />
               <span>AI Embassy Cover Letter Generator</span>
+            </a>
+
+            <a
+              href="#crm"
+              onClick={(e) => { e.preventDefault(); handleNav('crm'); }}
+              className="text-left px-3 py-2.5 rounded-lg bg-[#C5A059]/15 hover:bg-[#C5A059]/25 flex items-center justify-between text-[#042354] font-bold border border-[#C5A059]/40"
+            >
+              <div className="flex items-center gap-2">
+                <Users className="w-4 h-4 text-[#C5A059]" />
+                <span>CRM &amp; Agent Workspaces</span>
+              </div>
+              <span className="text-[10px] bg-[#042354] text-[#F5CE6D] px-2 py-0.5 rounded font-bold">STAFF</span>
             </a>
 
             <a
