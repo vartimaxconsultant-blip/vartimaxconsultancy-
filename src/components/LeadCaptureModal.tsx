@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Send, ShieldCheck, CheckCircle, Sparkles, Phone, Globe, Calendar, User } from 'lucide-react';
+import { X, Send, ShieldCheck, CheckCircle, Sparkles, Phone, Globe, Calendar, User, Mail, ExternalLink } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { VisaCategory } from '../types';
 import { notificationBus } from '../utils/notificationBus';
@@ -18,6 +18,7 @@ export const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
   defaultCountry = ''
 }) => {
   const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
   const [targetCountry, setTargetCountry] = useState(defaultCountry || 'Schengen (Europe)');
   const [visaType, setVisaType] = useState<VisaCategory>(defaultCategory);
@@ -44,14 +45,16 @@ export const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           fullName,
+          email,
           whatsapp,
+          phone: whatsapp,
           targetCountry,
           visaType,
           intakeDate
         })
       });
 
-      const data = await res.json();
+      const data = await res.json().catch(() => null);
       if (data?.notification) {
         notificationBus.emit(data.notification);
       } else {
@@ -63,8 +66,8 @@ export const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
           whatsapp,
           targetCountry: targetCountry || 'General',
           visaType,
-          summary: `${fullName} requested consultation for ${targetCountry} (${visaType}).`,
-          details: { intakeDate },
+          summary: `${fullName} requested consultation for ${targetCountry} (${visaType}). Email: ${email || 'Not provided'}`,
+          details: { intakeDate, email },
           createdAt: new Date().toISOString(),
           read: false,
           contacted: false
@@ -90,7 +93,7 @@ export const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
         targetCountry: targetCountry || 'General',
         visaType,
         summary: `${fullName} requested consultation for ${targetCountry} (${visaType}).`,
-        details: { intakeDate },
+        details: { intakeDate, email },
         createdAt: new Date().toISOString(),
         read: false,
         contacted: false
@@ -102,7 +105,7 @@ export const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
   };
 
   const directWhatsAppUrl = `https://wa.me/923401207525?text=${encodeURIComponent(
-    `Hello VartiMax Consultant! I just submitted an inquiry for ${visaType.toUpperCase()} visa to ${targetCountry}. My Name is ${fullName}, WhatsApp: ${whatsapp}.`
+    `Hello VartiMax Consultant! I just submitted an inquiry for ${visaType.toUpperCase()} visa to ${targetCountry}. My Name is ${fullName}, Email: ${email}, WhatsApp: ${whatsapp}.`
   )}`;
 
   return (
@@ -200,21 +203,39 @@ export const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
                 </div>
               </div>
 
-              {/* WhatsApp Number */}
-              <div>
-                <label className="block text-xs font-semibold text-[#E0E7FF] mb-1">
-                  WhatsApp Number * (For Instant Case Feedback)
-                </label>
-                <div className="relative">
-                  <Phone className="w-4 h-4 text-[#93C5FD]/70 absolute left-3 top-3" />
-                  <input
-                    type="tel"
-                    required
-                    value={whatsapp}
-                    onChange={(e) => setWhatsapp(e.target.value)}
-                    placeholder="e.g. +92 340 1234567"
-                    className="w-full pl-9 pr-3 py-2.5 text-sm rounded-xl border border-[#15488A] bg-[#061F40] text-white placeholder-[#78909C] focus:outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059] font-mono"
-                  />
+              {/* WhatsApp Number & Email Address */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-semibold text-[#E0E7FF] mb-1">
+                    WhatsApp / Phone *
+                  </label>
+                  <div className="relative">
+                    <Phone className="w-4 h-4 text-[#93C5FD]/70 absolute left-3 top-3" />
+                    <input
+                      type="tel"
+                      required
+                      value={whatsapp}
+                      onChange={(e) => setWhatsapp(e.target.value)}
+                      placeholder="e.g. +92 340 1234567"
+                      className="w-full pl-9 pr-3 py-2.5 text-xs rounded-xl border border-[#15488A] bg-[#061F40] text-white placeholder-[#78909C] focus:outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059] font-mono"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-[#E0E7FF] mb-1">
+                    Email Address
+                  </label>
+                  <div className="relative">
+                    <Mail className="w-4 h-4 text-[#93C5FD]/70 absolute left-3 top-3" />
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="applicant@gmail.com"
+                      className="w-full pl-9 pr-3 py-2.5 text-xs rounded-xl border border-[#15488A] bg-[#061F40] text-white placeholder-[#78909C] focus:outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059]"
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -299,8 +320,20 @@ export const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({
               </div>
 
               <p className="text-[11px] text-center text-[#93C5FD]/70">
-                🔒 Privacy Protected. Synced with VartiMax CRM & Google Sheets in real-time.
+                🔒 Privacy Protected. Synced with VartiMax CRM &amp; Google Sheets in real-time.
               </p>
+
+              <div className="pt-1 text-center">
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSfTltmseyQZmSTnCKxz4JOkcxIZKeEqSJYbtE_jcSYX8rTuWQ/viewform"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[11px] text-[#C5A059] hover:underline inline-flex items-center gap-1 font-medium"
+                >
+                  <span>Prefer standard Google Forms? Fill out our external form</span>
+                  <ExternalLink className="w-2.5 h-2.5" />
+                </a>
+              </div>
             </form>
           )}
         </div>

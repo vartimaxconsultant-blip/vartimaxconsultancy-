@@ -130,6 +130,10 @@ export interface AgentNotificationRecord {
     agentId?: string;
     leadId?: string;
     daysInactive?: number;
+    email?: string;
+    phone?: string;
+    targetCountry?: string;
+    visaType?: string;
   };
   createdAt: string;
   read: boolean;
@@ -685,9 +689,10 @@ app.get('/api/health', (req, res) => {
 // 2. Lead Capture API
 app.post('/api/leads', (req, res) => {
   try {
-    const { fullName, whatsapp, targetCountry, visaType, intakeDate, message } = req.body;
-    if (!fullName || !whatsapp) {
-      return res.status(400).json({ error: 'Full Name and WhatsApp number are required.' });
+    const { fullName, whatsapp, phone, email, targetCountry, visaType, intakeDate, message } = req.body;
+    const clientPhone = (whatsapp || phone || '').trim();
+    if (!fullName || !clientPhone) {
+      return res.status(400).json({ error: 'Full Name and Phone/WhatsApp number are required.' });
     }
 
     const leadId = `LEAD-${Date.now().toString().slice(-5)}`;
@@ -708,8 +713,9 @@ app.post('/api/leads', (req, res) => {
 
     const newLead: CRMLeadRecord = {
       id: leadId,
-      fullName,
-      whatsapp,
+      fullName: fullName.trim(),
+      whatsapp: clientPhone,
+      email: email ? String(email).trim() : undefined,
       targetCountry: targetCountry || 'Not Specified',
       visaType: visaType || 'visit',
       intakeDate: intakeDate || 'Immediate',
@@ -746,7 +752,7 @@ app.post('/api/leads', (req, res) => {
       type: isContact ? 'contact_query' : 'lead_inquiry',
       title: isContact ? 'New Contact Inquiry' : 'New Visa Consultation Lead',
       clientName: fullName,
-      whatsapp,
+      whatsapp: clientPhone,
       targetCountry: targetCountry || 'General Inquiry',
       visaType: visaType || 'visit',
       summary: assignedAgentId !== 'unassigned'
@@ -754,6 +760,7 @@ app.post('/api/leads', (req, res) => {
         : `${fullName} submitted a consultation inquiry for ${targetCountry || 'Visa'}.`,
       details: {
         intakeDate: intakeDate || 'Immediate',
+        email: email ? String(email).trim() : undefined,
         message: message || (isContact ? intakeDate : undefined),
         agentId: assignedAgentId,
         leadId
@@ -1030,11 +1037,13 @@ app.get('/api/submissions/lookup', (req, res) => {
     return res.status(400).json({ error: 'Please provide a Reference ID or WhatsApp number.' });
   }
 
+  res.setHeader('Content-Type', 'application/json');
+  const digits = query.replace(/\D/g, '');
   const found = submissionsStore.find(
     (item) =>
       item.referenceId.toLowerCase() === query ||
-      item.whatsapp.replace(/\D/g, '').includes(query.replace(/\D/g, '')) ||
-      (item.passportNumber && item.passportNumber.toLowerCase() === query)
+      (item.passportNumber && item.passportNumber.toLowerCase() === query) ||
+      (digits.length >= 7 && item.whatsapp.replace(/\D/g, '').includes(digits))
   );
 
   if (!found) {

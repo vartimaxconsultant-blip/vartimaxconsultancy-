@@ -24,6 +24,7 @@ import { DOCUMENT_REQUIREMENTS } from '../data/requirementsData';
 import { VisaCategory, UploadedFileDoc, ClientApplication } from '../types';
 import { notificationBus } from '../utils/notificationBus';
 import { VisaProgressTracker } from '../components/VisaProgressTracker';
+import { findClientApplicationLocally, saveClientApplicationLocally } from '../data/mockSubmissions';
 
 interface DocumentPortalPageProps {
   onOpenConsultation: () => void;
@@ -138,6 +139,7 @@ export const DocumentPortalPage: React.FC<DocumentPortalPageProps> = ({
       const data = await res.json();
       if (data.success && data.submission) {
         setSubmittedApp(data.submission);
+        saveClientApplicationLocally(data.submission);
 
         if (data.notification) {
           notificationBus.emit(data.notification);
@@ -190,6 +192,7 @@ export const DocumentPortalPage: React.FC<DocumentPortalPageProps> = ({
         updatedAt: new Date().toISOString()
       };
       setSubmittedApp(fallbackApp);
+      saveClientApplicationLocally(fallbackApp);
 
       notificationBus.emit({
         id: `NOTIF-${Date.now()}`,
@@ -220,22 +223,48 @@ export const DocumentPortalPage: React.FC<DocumentPortalPageProps> = ({
   // Look up application in CRM
   const handleTrackApplication = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!trackQuery.trim()) return;
+    const cleanQuery = trackQuery.trim();
+    if (!cleanQuery) return;
 
     setTrackLoading(true);
     setTrackError(null);
     setTrackedApp(null);
 
+    // Instant local lookup check
+    const localMatch = findClientApplicationLocally(cleanQuery);
+    if (localMatch) {
+      setTrackedApp(localMatch);
+      setTrackLoading(false);
+      return;
+    }
+
     try {
-      const res = await fetch(`/api/submissions/lookup?q=${encodeURIComponent(trackQuery)}`);
-      const data = await res.json();
-      if (data.success && data.application) {
-        setTrackedApp(data.application);
+      const res = await fetch(`/api/submissions/lookup?q=${encodeURIComponent(cleanQuery)}`);
+      if (res.ok) {
+        const contentType = res.headers.get('content-type') || '';
+        if (contentType.includes('application/json')) {
+          const data = await res.json();
+          if (data.success && data.application) {
+            setTrackedApp(data.application);
+            saveClientApplicationLocally(data.application);
+            return;
+          }
+        }
+      }
+
+      const fallback = findClientApplicationLocally(cleanQuery);
+      if (fallback) {
+        setTrackedApp(fallback);
       } else {
-        setTrackError(data.error || 'No application found with this Reference ID or Phone number.');
+        setTrackError(`No application found with Reference ID or Phone "${cleanQuery}". You can test with benchmark dockets like VMX-ISB-61044 or VMX-ISB-78219.`);
       }
     } catch (err) {
-      setTrackError('Could not reach database. Please test with VMX-ISB-78219 or your phone number.');
+      const fallback = findClientApplicationLocally(cleanQuery);
+      if (fallback) {
+        setTrackedApp(fallback);
+      } else {
+        setTrackError(`Application "${cleanQuery}" could not be retrieved from the server. Please verify your reference ID or test with verified dockets like VMX-ISB-61044.`);
+      }
     } finally {
       setTrackLoading(false);
     }

@@ -197,6 +197,17 @@ export const Footer: React.FC<FooterProps> = ({
                 Islamabad Office Directions &amp; Timings
               </a>
             </li>
+            <li>
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSfTltmseyQZmSTnCKxz4JOkcxIZKeEqSJYbtE_jcSYX8rTuWQ/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#C5A059] transition-colors inline-flex items-center gap-1 text-[#93C5FD]"
+              >
+                <span>Online Google Assessment Form</span>
+                <ExternalLink className="w-3 h-3 text-[#C5A059]" />
+              </a>
+            </li>
             <li className="pt-2">
               <button
                 onClick={onOpenGoogleSheetsModal}

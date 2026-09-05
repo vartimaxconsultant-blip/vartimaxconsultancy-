@@ -192,6 +192,10 @@ export interface AgentNotification {
     agentId?: string;
     leadId?: string;
     daysInactive?: number;
+    email?: string;
+    phone?: string;
+    targetCountry?: string;
+    visaType?: string;
   };
   createdAt: string;
   read: boolean;

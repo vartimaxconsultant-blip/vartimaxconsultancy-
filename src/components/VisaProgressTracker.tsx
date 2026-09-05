@@ -20,6 +20,7 @@ import {
   HelpCircle
 } from 'lucide-react';
 import { ClientApplication, VisaApplicationStatus, StageStepInfo } from '../types';
+import { findClientApplicationLocally, saveClientApplicationLocally } from '../data/mockSubmissions';
 
 interface VisaProgressTrackerProps {
   initialReferenceId?: string;
@@ -71,23 +72,57 @@ export const VisaProgressTracker: React.FC<VisaProgressTrackerProps> = ({
   ];
 
   const fetchApplication = async (query: string) => {
-    if (!query.trim()) return;
+    const trimmed = query.trim();
+    if (!trimmed) return;
     setLoading(true);
     setError(null);
 
+    // 1. Immediately look up locally (benchmarks or user's local submissions)
+    const localMatch = findClientApplicationLocally(trimmed);
+    if (localMatch) {
+      setApplication(localMatch);
+      setError(null);
+    }
+
     try {
-      const res = await fetch(`/api/submissions/lookup?q=${encodeURIComponent(query.trim())}`);
-      const data = await res.json();
-      if (data.success && data.application) {
-        setApplication(data.application);
+      const res = await fetch(`/api/submissions/lookup?q=${encodeURIComponent(trimmed)}`);
+      if (res.ok) {
+        const contentType = res.headers.get('content-type') || '';
+        if (contentType.includes('application/json')) {
+          const data = await res.json();
+          if (data.success && data.application) {
+            setApplication(data.application);
+            saveClientApplicationLocally(data.application);
+            setError(null);
+            return;
+          }
+        }
+      }
+
+      // If response was not 200 or not json:
+      if (localMatch) {
+        setApplication(localMatch);
+        setError(null);
       } else {
-        setError(data.error || 'No active application found matching this ID or Phone number.');
+        setError(`No active application found matching "${trimmed}". Please verify your reference ID or select one of the verified sample dockets below.`);
         setApplication(null);
       }
     } catch (err) {
-      console.error('Lookup error:', err);
-      setError('Connection error. Please try again or test with preset codes.');
-      setApplication(null);
+      console.warn('Network lookup unavailable, resolving via local benchmark repository:', err);
+      if (localMatch) {
+        setApplication(localMatch);
+        setError(null);
+      } else {
+        // Fallback check in case query was phone number
+        const fallback = findClientApplicationLocally(trimmed);
+        if (fallback) {
+          setApplication(fallback);
+          setError(null);
+        } else {
+          setError(`No active application found matching "${trimmed}". You can test the live tracker using any of the verified sample dockets below (e.g. VMX-ISB-61044).`);
+          setApplication(null);
+        }
+      }
     } finally {
       setLoading(false);
     }
