@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X, Send } from 'lucide-react';
+import vartimaxLogo from '../assets/images/vartimax_logo_icon_1788593875243.jpg';
 
 export const FloatingWhatsApp: React.FC = () => {
   const [showBubble, setShowBubble] = useState(false);
@@ -31,8 +32,17 @@ export const FloatingWhatsApp: React.FC = () => {
           </button>
 
           <div className="flex items-start gap-3">
-            <div className="w-9 h-9 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-md">
-              VM
+            <div className="relative w-10 h-10 rounded-full bg-white p-0.5 flex items-center justify-center shrink-0 shadow-md border-2 border-[#C5A059] overflow-hidden">
+              <img
+                src={vartimaxLogo}
+                alt="VartiMax Consultant Official Logo"
+                className="w-full h-full object-contain rounded-full"
+                referrerPolicy="no-referrer"
+                onError={(e) => {
+                  e.currentTarget.src = '/vartimax-logo.jpg';
+                }}
+              />
+              <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border border-white rounded-full"></span>
             </div>
             <div>
               <div className="flex items-center gap-1.5 mb-0.5">

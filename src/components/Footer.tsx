@@ -210,10 +210,20 @@ export const Footer: React.FC<FooterProps> = ({
               <MapPin className="w-4 h-4 text-[#C5A059] shrink-0 mt-0.5" />
               <span>Office 78, Basement, Gaga Downtown, Islamabad, Pakistan</span>
             </div>
-            <div className="flex items-center gap-2.5">
-              <Phone className="w-4 h-4 text-[#C5A059] shrink-0" />
-              <a href="tel:+923401207525" className="hover:text-[#C5A059] font-semibold text-white">
-                +92 340 1207525
+            <div className="flex items-center justify-between gap-2.5">
+              <div className="flex items-center gap-2.5">
+                <Phone className="w-4 h-4 text-[#C5A059] shrink-0" />
+                <a href="tel:+923401207525" className="hover:text-[#C5A059] font-semibold text-white">
+                  +92 340 1207525
+                </a>
+              </div>
+              <a
+                href="https://wa.me/923401207525"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[11px] bg-emerald-700/60 hover:bg-emerald-600 text-emerald-100 px-2 py-0.5 rounded border border-emerald-500/40 transition-colors"
+              >
+                WhatsApp Us
               </a>
             </div>
             <div className="flex items-center gap-2.5">

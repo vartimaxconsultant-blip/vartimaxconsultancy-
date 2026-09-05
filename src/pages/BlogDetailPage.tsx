@@ -252,6 +252,38 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({
             ))}
           </div>
 
+          {/* In-Article WhatsApp & Urgent File Review Call to Action Banner */}
+          <div className="bg-gradient-to-r from-[#041F3F] via-[#072B56] to-[#041F3F] border-2 border-[#C5A059] rounded-2xl p-6 sm:p-8 text-center space-y-4 shadow-xl">
+            <div className="inline-flex items-center gap-2 bg-[#C5A059]/20 text-[#F5CE6D] text-xs font-bold px-3.5 py-1 rounded-full border border-[#C5A059]/40">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#C5A059]" />
+              <span>Need Immediate Assistance with Your File?</span>
+            </div>
+            <h3 className="text-xl sm:text-2xl font-black text-white">
+              Get Your {post.category || 'Visa'} Dossier Reviewed Before Embassy Submission
+            </h3>
+            <p className="text-xs sm:text-sm text-[#D1D5DB] max-w-2xl mx-auto leading-relaxed">
+              Don’t risk a refusal under Article 32 or Section 214(b). Have your bank statement, cover letter, and travel itinerary audited by senior visa analysts at Gaga Downtown, Islamabad.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+              <a
+                href={`https://wa.me/923401207525?text=Hello%20VartiMax,%20I%20read%20your%20article%20on%20${encodeURIComponent(post.title)}%20and%20need%20assistance.`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-6 py-3.5 rounded-xl text-xs sm:text-sm shadow-lg hover:shadow-emerald-600/30 transition-all cursor-pointer"
+              >
+                <Phone className="w-4 h-4" />
+                <span>Chat Directly on WhatsApp (+92 340 1207525)</span>
+              </a>
+              <a
+                href="tel:+923401207525"
+                className="inline-flex items-center gap-2 bg-[#061F40] hover:bg-[#0A2E5C] text-[#F3F4F6] border border-[#C5A059] font-bold px-5 py-3.5 rounded-xl text-xs sm:text-sm transition-all"
+              >
+                <Phone className="w-4 h-4 text-[#C5A059]" />
+                <span>Call +92 340 1207525</span>
+              </a>
+            </div>
+          </div>
+
           {/* FAQ Section */}
           {post.faqs && post.faqs.length > 0 && (
             <div className="pt-6 border-t border-[#0C356A] space-y-4">

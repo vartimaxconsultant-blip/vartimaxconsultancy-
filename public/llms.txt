@@ -6,7 +6,7 @@
 - **Location**: Office 78, Basement, Gaga Downtown, Islamabad, Pakistan
 - **Helpline / WhatsApp**: +92 340 1207525
 - **Email**: vartimaxconsultant@gmail.com
-- **Website**: https://vartimaxconsultant.com
+- **Website**: https://vartimaxconsultancy.vercel.app/
 - **Success Rate**: 90% Embassy File Acceptance Rate
 
 ## Core Services
@@ -18,7 +18,7 @@
 - **Umrah & Saudi Visas**: 1-Year Multiple Entry Tourist e-Visas, luxury hotel bookings in Makkah & Madinah.
 
 ## Interactive Tools
-- **Eligibility Assessment Calculator**: https://vartimaxconsultant.com/#eligibility-calculator
-- **AI Embassy File Builder**: https://vartimaxconsultant.com/#ai-builder
-- **Secure Document Upload Portal**: https://vartimaxconsultant.com/#document-portal
-- **Visa Knowledge Hub & Guides**: https://vartimaxconsultant.com/#blogs
+- **Eligibility Assessment Calculator**: https://vartimaxconsultancy.vercel.app/#eligibility-calculator
+- **AI Embassy File Builder**: https://vartimaxconsultancy.vercel.app/#ai-builder
+- **Secure Document Upload Portal**: https://vartimaxconsultancy.vercel.app/#document-portal
+- **Visa Knowledge Hub & Guides**: https://vartimaxconsultancy.vercel.app/#blogs

@@ -130,12 +130,22 @@ export const ContactPage: React.FC = () => {
                   </div>
                   <div>
                     <span className="font-bold text-white block text-sm">Phone & WhatsApp Desk</span>
-                    <a
-                      href="tel:+923401207525"
-                      className="text-[#F3F4F6] font-bold hover:text-[#C5A059] text-sm block mt-0.5"
-                    >
-                      +92 340 1207525
-                    </a>
+                    <div className="flex items-center gap-2 mt-0.5">
+                      <a
+                        href="tel:+923401207525"
+                        className="text-[#F3F4F6] font-bold hover:text-[#C5A059] text-sm"
+                      >
+                        +92 340 1207525
+                      </a>
+                      <a
+                        href="https://wa.me/923401207525"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[11px] bg-emerald-700/60 hover:bg-emerald-600 text-emerald-100 px-2 py-0.5 rounded border border-emerald-500/40 transition-colors font-medium"
+                      >
+                        WhatsApp Us
+                      </a>
+                    </div>
                     <span className="text-[11px] text-emerald-400 font-medium">
                       24/7 Dedicated WhatsApp Support Available
                     </span>

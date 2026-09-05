@@ -23,16 +23,21 @@ import confetti from 'canvas-confetti';
 import { DOCUMENT_REQUIREMENTS } from '../data/requirementsData';
 import { VisaCategory, UploadedFileDoc, ClientApplication } from '../types';
 import { notificationBus } from '../utils/notificationBus';
+import { VisaProgressTracker } from '../components/VisaProgressTracker';
 
 interface DocumentPortalPageProps {
   onOpenConsultation: () => void;
+  initialTab?: 'submit' | 'track' | 'admin_crm';
+  initialReferenceId?: string;
 }
 
 export const DocumentPortalPage: React.FC<DocumentPortalPageProps> = ({
-  onOpenConsultation
+  onOpenConsultation,
+  initialTab = 'track',
+  initialReferenceId
 }) => {
-  // Tab states: 'submit' | 'track' | 'admin_crm'
-  const [activeTab, setActiveTab] = useState<'submit' | 'track' | 'admin_crm'>('submit');
+  // Tab states: 'track' (Visa Progress Tracker) | 'submit' | 'admin_crm'
+  const [activeTab, setActiveTab] = useState<'submit' | 'track' | 'admin_crm'>(initialTab);
 
   // Category Selector
   const [selectedCategory, setSelectedCategory] = useState<VisaCategory>('visit');
@@ -285,18 +290,6 @@ export const DocumentPortalPage: React.FC<DocumentPortalPageProps> = ({
         <div className="flex items-center justify-center">
           <div className="bg-[#07244A] p-1.5 rounded-xl flex items-center gap-1 border border-[#15488A] text-xs font-bold">
             <button
-              onClick={() => setActiveTab('submit')}
-              className={`px-5 py-2.5 rounded-lg transition-all cursor-pointer flex items-center gap-2 ${
-                activeTab === 'submit'
-                  ? 'bg-[#C5A059] text-[#061F40] shadow-md font-extrabold'
-                  : 'text-[#D1D5DB] hover:text-white hover:bg-[#061F40]'
-              }`}
-            >
-              <Upload className="w-3.5 h-3.5" />
-              <span>1. Submit Documents</span>
-            </button>
-
-            <button
               onClick={() => setActiveTab('track')}
               className={`px-5 py-2.5 rounded-lg transition-all cursor-pointer flex items-center gap-2 ${
                 activeTab === 'track'
@@ -305,7 +298,19 @@ export const DocumentPortalPage: React.FC<DocumentPortalPageProps> = ({
               }`}
             >
               <Search className="w-3.5 h-3.5" />
-              <span>2. Track File Status</span>
+              <span>1. Visa Progress Tracker</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('submit')}
+              className={`px-5 py-2.5 rounded-lg transition-all cursor-pointer flex items-center gap-2 ${
+                activeTab === 'submit'
+                  ? 'bg-[#C5A059] text-[#061F40] shadow-md font-extrabold'
+                  : 'text-[#D1D5DB] hover:text-white hover:bg-[#061F40]'
+              }`}
+            >
+              <Upload className="w-3.5 h-3.5" />
+              <span>2. Submit Documents</span>
             </button>
 
             <button
@@ -679,151 +684,14 @@ export const DocumentPortalPage: React.FC<DocumentPortalPageProps> = ({
           </div>
         )}
 
-        {/* TAB 2: TRACK FILE STATUS */}
+        {/* TAB 2: VISA PROGRESS TRACKER */}
         {activeTab === 'track' && (
-          <div className="max-w-2xl mx-auto space-y-6">
-            <div className="bg-[#07244A] p-6 sm:p-8 rounded-2xl shadow-sm border border-[#15488A] text-center space-y-4">
-              <div className="w-12 h-12 rounded-full bg-[#C5A059]/20 text-[#C5A059] flex items-center justify-center mx-auto border border-[#C5A059]/40">
-                <Search className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold text-white">
-                Real-Time Application Status Tracker
-              </h3>
-              <p className="text-xs text-[#D1D5DB] max-w-md mx-auto">
-                Enter your <strong>Client Reference ID</strong> (e.g. <code>VMX-ISB-78219</code>) or your registered WhatsApp number to view file progression.
-              </p>
-
-              <form onSubmit={handleTrackApplication} className="flex gap-2 max-w-md mx-auto">
-                <input
-                  type="text"
-                  required
-                  value={trackQuery}
-                  onChange={(e) => setTrackQuery(e.target.value)}
-                  placeholder="e.g. VMX-ISB-78219 or 03401207525"
-                  className="flex-1 px-4 py-3 text-xs rounded-xl bg-[#061F40] border border-[#15488A] focus:ring-2 focus:ring-[#C5A059] font-mono text-white placeholder-[#78909C]"
-                />
-                <button
-                  type="submit"
-                  disabled={trackLoading}
-                  className="bg-[#C5A059] hover:bg-[#D4AF37] text-[#061F40] font-bold px-5 py-3 rounded-xl text-xs transition-colors cursor-pointer"
-                >
-                  {trackLoading ? 'Searching...' : 'Track'}
-                </button>
-              </form>
-
-              {trackError && (
-                <div className="p-3 bg-amber-950/40 border border-amber-800/40 text-amber-300 rounded-xl text-xs">
-                  {trackError}
-                </div>
-              )}
-            </div>
-
-            {/* Tracked Result View */}
-            {trackedApp && (
-              <div className="bg-[#07244A] p-6 sm:p-8 rounded-2xl shadow-xl border border-[#15488A] space-y-6 animate-in fade-in duration-200">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#123A6D] pb-4">
-                  <div>
-                    <span className="text-[10px] font-mono text-[#93C5FD] block uppercase">
-                      Client File Docket
-                    </span>
-                    <h4 className="text-xl font-extrabold text-white">
-                      {trackedApp.fullName}
-                    </h4>
-                    <div className="text-xs text-[#D1D5DB] font-mono">
-                      Ref: {trackedApp.referenceId} • {trackedApp.targetCountry}
-                    </div>
-                  </div>
-
-                  <div className="text-right">
-                    <span className={`inline-block text-xs font-bold px-3 py-1 rounded-full ${
-                      trackedApp.status === 'ready_for_embassy' || trackedApp.status === 'visa_approved'
-                        ? 'bg-emerald-950/60 text-emerald-400 border border-emerald-500/40'
-                        : 'bg-amber-950/60 text-[#C5A059] border border-[#C5A059]/40'
-                    }`}>
-                      {trackedApp.status === 'ready_for_embassy' && 'Ready for Embassy Submission'}
-                      {trackedApp.status === 'documents_received' && 'Documents Received & Under Audit'}
-                      {trackedApp.status === 'file_in_creation' && 'Embassy File in Creation'}
-                      {trackedApp.status === 'visa_approved' && 'Visa Stamped & Approved'}
-                      {trackedApp.status === 'pending_review' && 'Pending Initial Review'}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Progress Steps */}
-                <div className="space-y-3">
-                  <span className="text-xs font-bold text-[#E0E7FF] block">
-                    Embassy Roadmap Progression:
-                  </span>
-                  <div className="grid grid-cols-4 gap-2 text-center text-[11px] font-medium">
-                    <div className="p-2.5 rounded-lg bg-[#082D20] text-emerald-300 border border-emerald-700/50">
-                      ✓ Docs Uploaded
-                    </div>
-                    <div className="p-2.5 rounded-lg bg-[#082D20] text-emerald-300 border border-emerald-700/50">
-                      ✓ Audit Passed
-                    </div>
-                    <div className={`p-2.5 rounded-lg border ${
-                      trackedApp.status === 'ready_for_embassy' || trackedApp.status === 'visa_approved'
-                        ? 'bg-[#082D20] text-emerald-300 border-emerald-700/50'
-                        : 'bg-[#3D290F] text-[#C5A059] border-[#C5A059]/50 font-bold animate-pulse'
-                    }`}>
-                      {trackedApp.status === 'ready_for_embassy' ? '✓ File Engineered' : '⏳ File Creation'}
-                    </div>
-                    <div className={`p-2.5 rounded-lg border ${
-                      trackedApp.status === 'visa_approved'
-                        ? 'bg-[#082D20] text-emerald-300'
-                        : 'bg-[#061F40] text-[#78909C] border-[#15488A]'
-                    }`}>
-                      Embassy Biometrics
-                    </div>
-                  </div>
-                </div>
-
-                {/* Case Officer Notes */}
-                {trackedApp.notes && (
-                  <div className="p-4 bg-[#061F40] rounded-xl border border-[#15488A] text-xs text-[#E0E7FF]">
-                    <span className="font-bold text-[#C5A059] block mb-1">
-                      Case Officer Remarks (Islamabad Headquarters):
-                    </span>
-                    <p className="italic text-[#D1D5DB]">{trackedApp.notes}</p>
-                  </div>
-                )}
-
-                {/* Documents List */}
-                <div className="space-y-2">
-                  <span className="text-xs font-bold text-[#E0E7FF] block">
-                    Verified Documents on File ({trackedApp.documents.length}):
-                  </span>
-                  <div className="space-y-2">
-                    {trackedApp.documents.map((d, i) => (
-                      <div
-                        key={i}
-                        className="flex items-center justify-between p-3 rounded-xl bg-[#061F40] border border-[#15488A] text-xs"
-                      >
-                        <div className="flex items-center gap-2">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                          <span className="font-medium text-[#E0E7FF]">{d.requirementTitle}</span>
-                        </div>
-                        <span className="font-mono text-[#93C5FD]">{d.fileName}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="pt-2 flex justify-end">
-                  <a
-                    href={`https://wa.me/923401207525?text=${encodeURIComponent(
-                      `Inquiring on Reference ID ${trackedApp.referenceId} for ${trackedApp.fullName}`
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center gap-1.5 shadow"
-                  >
-                    <Phone className="w-3.5 h-3.5" />
-                    <span>Inquire with Case Officer</span>
-                  </a>
-                </div>
-              </div>
-            )}
+          <div className="max-w-5xl mx-auto">
+            <VisaProgressTracker
+              initialReferenceId={submittedApp?.referenceId || initialReferenceId || 'VMX-ISB-61044'}
+              onOpenConsultation={onOpenConsultation}
+              onSwitchToSubmit={() => setActiveTab('submit')}
+            />
           </div>
         )}
 

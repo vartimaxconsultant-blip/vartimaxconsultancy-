@@ -25,12 +25,108 @@ import { VISA_SERVICES } from './data/servicesData';
 import { BLOG_POSTS } from './data/blogsData';
 import { VisaCategory } from './types';
 
+function parseRouteFromLocation(): string {
+  if (typeof window === 'undefined') return 'home';
+
+  const hash = window.location.hash.replace(/^#\/?/, '').trim();
+  const path = window.location.pathname.replace(/^\//, '').trim();
+
+  // Check hash first (standard SPA client routing)
+  if (hash) {
+    if (hash.startsWith('services/')) return `service-${hash.replace('services/', '')}`;
+    if (hash.startsWith('service-')) return hash;
+    if (hash.startsWith('blogs/')) return `blog-${hash.replace('blogs/', '')}`;
+    if (hash.startsWith('blog-')) return hash;
+    if (hash === 'visa-tracker' || hash === 'tracker') return 'visa-tracker';
+    if (hash === 'document-portal') return 'document-portal';
+    if (hash === 'assessment') return 'assessment';
+    if (hash === 'ai-file-assistant') return 'ai-file-assistant';
+    if (hash === 'crm') return 'crm';
+    if (hash === 'about') return 'about';
+    if (hash === 'contact') return 'contact';
+    if (hash === 'blogs') return 'blogs';
+    if (hash === 'home' || hash === '') return 'home';
+  }
+
+  // Check pathname
+  if (path.startsWith('services/')) {
+    return `service-${path.replace('services/', '')}`;
+  }
+  if (path.startsWith('blogs/')) {
+    return `blog-${path.replace('blogs/', '')}`;
+  }
+  if (path === 'visa-tracker' || path === 'tracker') return 'visa-tracker';
+  if (path === 'document-portal') return 'document-portal';
+  if (path === 'assessment') return 'assessment';
+  if (path === 'ai-file-assistant') return 'ai-file-assistant';
+  if (path === 'crm') return 'crm';
+  if (path === 'about') return 'about';
+  if (path === 'contact') return 'contact';
+  if (path === 'blogs') return 'blogs';
+
+  return 'home';
+}
+
 function AppContent() {
-  const [currentRoute, setCurrentRoute] = useState<string>('home');
+  const [currentRoute, setCurrentRoute] = useState<string>(() => parseRouteFromLocation());
   const [leadModalOpen, setLeadModalOpen] = useState(false);
   const [googleSheetsModalOpen, setGoogleSheetsModalOpen] = useState(false);
   const [leadDefaultCountry, setLeadDefaultCountry] = useState('');
   const [leadDefaultCategory, setLeadDefaultCategory] = useState<VisaCategory>('visit');
+
+  // Synchronize route state with browser history (back/forward & direct links)
+  useEffect(() => {
+    const handleUrlChange = () => {
+      const detectedRoute = parseRouteFromLocation();
+      setCurrentRoute(detectedRoute);
+    };
+
+    window.addEventListener('hashchange', handleUrlChange);
+    window.addEventListener('popstate', handleUrlChange);
+    return () => {
+      window.removeEventListener('hashchange', handleUrlChange);
+      window.removeEventListener('popstate', handleUrlChange);
+    };
+  }, []);
+
+  // Find active service detail if route starts with 'service-'
+  const selectedServiceSlug = currentRoute.startsWith('service-')
+    ? currentRoute.replace('service-', '')
+    : null;
+
+  const currentService = selectedServiceSlug
+    ? VISA_SERVICES.find((s) => s.slug === selectedServiceSlug)
+    : null;
+
+  // Find active blog post if route starts with 'blog-'
+  const selectedBlogSlug = currentRoute.startsWith('blog-')
+    ? currentRoute.replace('blog-', '')
+    : null;
+
+  const currentBlogPost = selectedBlogSlug
+    ? BLOG_POSTS.find((b) => b.slug === selectedBlogSlug)
+    : null;
+
+  // Dynamically update document title and meta description for SEO
+  useEffect(() => {
+    if (currentService) {
+      document.title = `${currentService.title} | VartiMax Consultant Islamabad`;
+    } else if (currentBlogPost) {
+      document.title = currentBlogPost.metaTitle || `${currentBlogPost.title} | VartiMax Consultant`;
+    } else if (currentRoute === 'visa-tracker' || currentRoute === 'tracker') {
+      document.title = 'Client Visa Progress Tracker & Embassy Milestone Portal | VartiMax Consultant';
+    } else if (currentRoute === 'document-portal') {
+      document.title = 'Secure Client Visa Document Upload Portal | VartiMax Consultant';
+    } else if (currentRoute === 'blogs') {
+      document.title = 'Visa Guides, Checklists & Refusal Solutions | VartiMax Islamabad';
+    } else if (currentRoute === 'assessment') {
+      document.title = 'Calculate Visa Acceptance Score | VartiMax Consultant';
+    } else if (currentRoute === 'crm') {
+      document.title = 'CRM Staff Workspace & Agent Desks | VartiMax Consultant';
+    } else {
+      document.title = 'VartiMax Consultant | Visa File Preparation & International Admissions Islamabad';
+    }
+  }, [currentRoute, currentService, currentBlogPost]);
 
   // Smart Lead Capture Popup Trigger: 7 Seconds OR 40% Scroll
   useEffect(() => {
@@ -67,6 +163,15 @@ function AppContent() {
 
   const handleNavigate = (route: string) => {
     setCurrentRoute(route);
+    let targetHash = route;
+    if (route.startsWith('service-')) {
+      targetHash = `services/${route.replace('service-', '')}`;
+    } else if (route.startsWith('blog-')) {
+      targetHash = `blogs/${route.replace('blog-', '')}`;
+    }
+    if (window.location.hash.replace(/^#/, '') !== targetHash) {
+      window.location.hash = targetHash;
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -75,24 +180,6 @@ function AppContent() {
     if (category) setLeadDefaultCategory(category);
     setLeadModalOpen(true);
   };
-
-  // Find active service detail if route starts with 'service-'
-  const selectedServiceSlug = currentRoute.startsWith('service-')
-    ? currentRoute.replace('service-', '')
-    : null;
-
-  const currentService = selectedServiceSlug
-    ? VISA_SERVICES.find((s) => s.slug === selectedServiceSlug)
-    : null;
-
-  // Find active blog post if route starts with 'blog-'
-  const selectedBlogSlug = currentRoute.startsWith('blog-')
-    ? currentRoute.replace('blog-', '')
-    : null;
-
-  const currentBlogPost = selectedBlogSlug
-    ? BLOG_POSTS.find((b) => b.slug === selectedBlogSlug)
-    : null;
 
   return (
     <div className="min-h-screen flex flex-col bg-[#092E5E] text-[#F3F4F6] font-sans antialiased selection:bg-[#C5A059] selection:text-[#092E5E]">
@@ -138,8 +225,9 @@ function AppContent() {
           />
         )}
 
-        {currentRoute === 'document-portal' && (
+        {(currentRoute === 'document-portal' || currentRoute === 'visa-tracker' || currentRoute === 'tracker') && (
           <DocumentPortalPage
+            initialTab={currentRoute === 'document-portal' ? 'submit' : 'track'}
             onOpenConsultation={() => handleOpenConsultation()}
           />
         )}

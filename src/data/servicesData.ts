@@ -229,5 +229,137 @@ export const VISA_SERVICES: VisaServiceDetail[] = [
         answer: 'Yes! With the 1-Year Multiple Entry Saudi Tourist Visa provided by VartiMax, you can freely travel anywhere in Saudi Arabia, perform Umrah multiple times, and attend events.'
       }
     ]
+  },
+  {
+    slug: 'schengen-file-preparation',
+    title: 'Schengen Visa Cover Letter & Travel Itinerary Writing Service Islamabad',
+    shortTitle: 'Schengen File Prep',
+    category: 'visit',
+    countries: ['Italy', 'Germany', 'France', 'Spain', 'Netherlands', 'Switzerland', 'Austria', 'All 29 Schengen Countries'],
+    bannerImage: schengenImg,
+    badge: 'Embassy-Grade Dossier',
+    acceptanceRate: '95% Approval Rate',
+    processingTime: '24 - 48 Hours',
+    stayDuration: 'Custom (10 - 90 Days)',
+    embassyFee: 'Zero Hidden Charges',
+    heroHeadline: 'Schengen Visa Cover Letter Writing Service Islamabad & Pakistan Itinerary Creation',
+    heroSubheadline: 'Bespoke Embassy Cover Letters, Synchronized Day-by-Day European Travel Itineraries, and Full Dossier Formatting Tailored for Pakistani Passport Holders in Islamabad & Rawalpindi.',
+    description: 'Looking for a specialized Schengen visa cover letter writing service in Islamabad or professional Schengen visa travel itinerary creation in Pakistan? At European consulates in Islamabad (including Italy, Germany, France, and Spain), the single largest reason for refusal under Article 32 is an unconvincing purpose of stay or a generic, unverified itinerary. VartiMax Consultant architects personalized, legally robust cover letters highlighting your verified professional roots, tax compliance (FBR), and family ties in Pakistan, accompanied by realistic day-by-day itineraries synchronized with your hotel bookings and flight routes.',
+    whyCrucial: [
+      'Bespoke Schengen Cover Letter crafted by senior case specialists addressing consular concerns and ties to Pakistan',
+      'Realistic Day-by-Day Schengen Travel Itinerary with intra-European rail/flight transit and hotel alignment',
+      'Direct elimination of Schengen Code Article 32(1)(a)(ii) and Article 32(1)(b) refusal triggers',
+      'Formatted to exact Gerry’s Visa Drop-off, VFS Global, and BLS International submission standards in Islamabad',
+      'Detailed financial justification tying your 6-month bank statement to your proposed European travel budget'
+    ],
+    embassyFileChecklist: [
+      'Personalized Embassy Cover Letter addressed to the specific Ambassador / Visa Section',
+      'Day-by-day detailed tourist or business itinerary with city landmarks, hotels, and transit plans',
+      'Verified GDS roundtrip flight reservation with live PNR code',
+      'Confirmed free-cancellation hotel vouchers matching all itinerary dates',
+      'Schengen-compliant €30,000 emergency medical insurance certificate',
+      'FBR Active Tax Filer Certificate, Tax Returns (2-3 years), and Bank Account Maintenance Certificate'
+    ],
+    faqs: [
+      {
+        question: 'Why is a professionally written cover letter so important for a Schengen visa in Pakistan?',
+        answer: 'Since Schengen embassies in Islamabad do not interview tourist applicants in person, your cover letter is your sole opportunity to present your profile, explain your genuine travel purpose, and establish undeniable ties to Pakistan. A cookie-cutter internet template frequently leads to instant refusal under Article 32.'
+      },
+      {
+        question: 'How do you create a Schengen visa travel itinerary that European embassies accept?',
+        answer: 'We craft realistic day-by-day travel programs (e.g., Rome-Florence-Venice or Paris-Amsterdam-Brussels) with realistic commute times, genuine hotel reservations, and daily tourist activities. We never create rushed, impossible schedules that raise officer suspicion.'
+      },
+      {
+        question: 'Can VartiMax assist applicants in Rawalpindi and other cities?',
+        answer: 'Yes! While our primary office is at Office 78, Basement, Gaga Downtown, Islamabad, we serve applicants across Rawalpindi, Lahore, Peshawar, and overseas via express WhatsApp file delivery (+92 340 1207525) within 24 to 48 hours.'
+      }
+    ]
+  },
+  {
+    slug: 'dummy-flight-hotel-booking',
+    title: 'Dummy Flight Booking for Visa Rawalpindi & Islamabad (Live GDS PNR)',
+    shortTitle: 'Dummy Flight & Hotel',
+    category: 'visit',
+    countries: ['Schengen Area', 'United Kingdom', 'Canada', 'United States', 'Turkey', 'Worldwide'],
+    bannerImage: flightHotelImg,
+    badge: '100% Verifiable PNR',
+    acceptanceRate: '100% Embassy Accepted',
+    processingTime: '30 - 60 Minutes',
+    stayDuration: 'Active for 14 - 21 Days',
+    embassyFee: 'Instant Delivery',
+    heroHeadline: 'Verified Dummy Flight Booking for Visa in Rawalpindi & Islamabad with Live PNR',
+    heroSubheadline: 'Never risk purchasing expensive non-refundable airline tickets before visa grant. Get 100% embassy-approved GDS flight itineraries and confirmed hotel booking vouchers accepted by all foreign missions in Pakistan.',
+    description: 'Looking for authentic dummy flight booking for visa in Rawalpindi or Islamabad? Embassies worldwide (including Schengen, UKVI, US Embassy, and IRCC Canada) explicitly instruct applicants: "Do not purchase non-refundable flight tickets until your visa is issued." Instead, they require a confirmed flight itinerary / reservation with a verifiable Airline PNR code issued through official GDS portals (Amadeus, Sabre, Galileo). VartiMax Consultant provides genuine roundtrip flight reservations and free-cancellation hotel booking vouchers that consular officers can independently verify on official airline websites.',
+    whyCrucial: [
+      '100% Verifiable Airline PNR that visa officers can look up live on Emirates, Qatar Airways, Turkish Airlines, PIA, etc.',
+      'Protects you from thousands of dollars in ticket cancellation penalties if your visa is delayed or refused',
+      'Confirmed Hotel Reservation Vouchers with official booking reference codes matching your intended travel dates',
+      'Fully compliant with VFS Global, Gerry’s Visa, BLS International, and online visa portals',
+      'Express delivery to your WhatsApp (+92 340 1207525) and email within 30 to 60 minutes'
+    ],
+    embassyFileChecklist: [
+      'Roundtrip GDS Flight Reservation (originating from Islamabad ISB, Lahore LHE, or Karachi KHI)',
+      'Valid Airline Passenger Name Record (PNR) and electronic itinerary document',
+      'Confirmed hotel vouchers on official hospitality letterhead covering every night of your stay',
+      'Dates precisely synchronized with your employer leave letter (NOC) and travel insurance policy'
+    ],
+    faqs: [
+      {
+        question: 'Is dummy flight booking legal and accepted by embassies in Islamabad and Rawalpindi?',
+        answer: 'Yes! Official embassy checklists explicitly state that applicants should submit a flight reservation or travel itinerary, NOT a purchased ticket. Our flight bookings are genuine GDS reservations holding active airline seat inventory.'
+      },
+      {
+        question: 'Can the visa officer verify my dummy flight booking online?',
+        answer: 'Yes. You receive an authentic 6-character PNR code and e-ticket itinerary that can be verified directly on the airline’s official website under the "Manage My Booking" section.'
+      },
+      {
+        question: 'How quickly can I get flight and hotel reservations in Rawalpindi / Islamabad?',
+        answer: 'We issue verified GDS flight reservations and hotel vouchers within 30 to 60 minutes directly to your WhatsApp or email. Simply message our team at +92 340 1207525.'
+      }
+    ]
+  },
+  {
+    slug: 'usa-visa-interview-coaching',
+    title: 'USA Visa Interview Mock Practice Islamabad (Consular Prep for B1/B2 & F1)',
+    shortTitle: 'USA Interview Prep',
+    category: 'visit',
+    countries: ['United States', 'US Embassy Islamabad', 'US Consulate Karachi'],
+    bannerImage: usaVisaImg,
+    badge: 'Consular Window Drills',
+    acceptanceRate: '91% Approval Rate',
+    processingTime: 'Same-Day Sessions',
+    stayDuration: 'B1/B2 & F1 (5-Year Visas)',
+    embassyFee: 'In-Person & Online',
+    heroHeadline: 'USA Visa Interview Mock Practice in Islamabad – Overcome Section 214(b) with Confidence',
+    heroSubheadline: 'Master the high-stakes 2-minute US Embassy Islamabad consular window interview with simulated mock drills, DS-160 alignment audits, and psychological preparation by senior case analysts.',
+    description: 'Seeking expert USA visa interview mock practice in Islamabad? At the US Embassy in the Diplomatic Enclave, consular officers evaluate applicants in a rapid 2 to 3-minute verbal interaction. Under INA Section 214(b), US law legally presumes every applicant is an intending immigrant until they prove strong, unshakeable economic, professional, and familial ties to Pakistan. Hesitation, inconsistent DS-160 replies, or overly rehearsed answers result in immediate refusal. VartiMax Consultant conducts rigorous 1-on-1 mock interviews simulating the consular window environment so you answer clearly, concisely, and with complete confidence.',
+    whyCrucial: [
+      'Comprehensive DS-160 Audit: Eliminates fatal contradictions between your submitted form and spoken answers',
+      'Realistic US Embassy Consular Window Simulations: Practice rapid-fire questions under authentic pressure',
+      'Ties to Pakistan Strategy: Formulate convincing verbal proof of family obligations, real estate, and career growth',
+      'F-1 Student Visa Specialization: Defend university choice, program relevance, and financial sponsorship with authority',
+      'Section 214(b) Refusal Overhaul: Re-frame your answers if you have previously been refused at Islamabad or Karachi'
+    ],
+    embassyFileChecklist: [
+      'DS-160 Confirmation Page with high-resolution barcode',
+      'Valid Pakistani Passport + previous passports showing international travel history',
+      'US Embassy Appointment Confirmation Letter (Islamabad Diplomatic Enclave or Karachi Consulate)',
+      'Organized document folder: 6-month stamped bank statement, FBR tax returns, and property documents',
+      'For F-1 Students: Original Form I-20, SEVIS I-901 fee receipt, and standardized test scorecards'
+    ],
+    faqs: [
+      {
+        question: 'Why do most Pakistani applicants get rejected under Section 214(b) at the US Embassy Islamabad?',
+        answer: 'Most applicants fail because they sound like they are memorizing generic internet answers or provide vague replies about their jobs and reasons for returning. The consular officer makes up their mind within the first 60 seconds based on your confidence, directness, and DS-160 consistency.'
+      },
+      {
+        question: 'Where do the USA visa interview mock practice sessions take place?',
+        answer: 'We offer in-person 1-on-1 mock sessions at our Islamabad headquarters (Office 78, Basement, Gaga Downtown) and interactive video sessions via Zoom/Google Meet for clients located in Rawalpindi, Peshawar, Lahore, or abroad.'
+      },
+      {
+        question: 'How many mock sessions do I need before my US Embassy appointment?',
+        answer: 'Most applicants achieve peak readiness in 2 to 3 intensive sessions, which include a diagnostic interview, answer refining, and a final mock simulation.'
+      }
+    ]
   }
 ];

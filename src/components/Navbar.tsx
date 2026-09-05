@@ -175,6 +175,18 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           <a
+            href="#visa-tracker"
+            onClick={(e) => { e.preventDefault(); handleNav('visa-tracker'); }}
+            className={`whitespace-nowrap flex items-center gap-1.5 transition-colors hover:text-[#C5A059] cursor-pointer py-1 ${
+              currentRoute === 'visa-tracker' || currentRoute === 'tracker' ? 'text-[#C5A059] font-bold border-b-2 border-[#C5A059]' : ''
+            }`}
+          >
+            <Search className="w-3.5 h-3.5 text-[#C5A059]" />
+            <span>Visa Tracker</span>
+            <span className="text-[10px] bg-[#C5A059]/15 text-[#042354] font-extrabold px-1.5 py-0.5 rounded border border-[#C5A059]/40">TRACK</span>
+          </a>
+
+          <a
             href="#document-portal"
             onClick={(e) => { e.preventDefault(); handleNav('document-portal'); }}
             className={`whitespace-nowrap flex items-center gap-1.5 transition-colors hover:text-[#C5A059] cursor-pointer py-1 ${
@@ -309,6 +321,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             ))}
 
             <a
+              href="#visa-tracker"
+              onClick={(e) => { e.preventDefault(); handleNav('visa-tracker'); }}
+              className="text-left px-3 py-2 rounded-lg bg-[#C5A059]/10 hover:bg-[#C5A059]/20 flex items-center justify-between text-[#042354] font-bold border border-[#C5A059]/30"
+            >
+              <div className="flex items-center gap-2">
+                <Search className="w-4 h-4 text-[#C5A059]" />
+                <span>Visa Progress Tracker</span>
+              </div>
+              <span className="text-[10px] bg-[#C5A059] text-[#042354] px-1.5 py-0.5 rounded font-black">TRACK</span>
+            </a>
+
+            <a
               href="#document-portal"
               onClick={(e) => { e.preventDefault(); handleNav('document-portal'); }}
               className="text-left px-3 py-2 rounded-lg hover:bg-slate-50 flex items-center gap-2 text-[#9A7420] font-semibold"
@@ -382,6 +406,13 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               Book Free Visa Assessment
             </button>
+            <a
+              href="tel:+923401207525"
+              className="w-full text-center bg-slate-100 hover:bg-slate-200 text-[#042354] py-2.5 rounded-lg text-sm font-semibold flex items-center justify-center gap-2"
+            >
+              <Phone className="w-4 h-4 text-[#C5A059]" />
+              <span>Call +92 340 1207525</span>
+            </a>
             <a
               href="https://wa.me/923401207525?text=Hello%20VartiMax%20Consultant,%20I%20want%20to%20inquire%20about%20visa%20services."
               target="_blank"

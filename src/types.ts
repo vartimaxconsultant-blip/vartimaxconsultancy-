@@ -24,6 +24,25 @@ export interface UploadedFileDoc {
   adminFeedback?: string;
 }
 
+export type VisaApplicationStatus =
+  | 'pending_review'
+  | 'documents_received'
+  | 'document_review'
+  | 'file_in_creation'
+  | 'ready_for_embassy'
+  | 'embassy_submission'
+  | 'interview_prep'
+  | 'visa_approved';
+
+export interface StageStepInfo {
+  stepKey: 'document_review' | 'file_creation' | 'embassy_submission' | 'interview_prep' | 'visa_decision';
+  title: string;
+  shortDesc: string;
+  status: 'completed' | 'current' | 'upcoming';
+  dateCompleted?: string;
+  actionRequired?: string;
+}
+
 export interface ClientApplication {
   referenceId: string; // e.g. VMX-ISB-78219
   fullName: string;
@@ -34,8 +53,16 @@ export interface ClientApplication {
   intakeDate?: string;
   passportNumber?: string;
   documents: UploadedFileDoc[];
-  status: 'pending_review' | 'documents_received' | 'file_in_creation' | 'ready_for_embassy' | 'visa_approved';
+  status: VisaApplicationStatus;
   notes?: string;
+  appointmentDate?: string;
+  embassyCenter?: string;
+  interviewDate?: string;
+  assignedConsultant?: {
+    name: string;
+    phone: string;
+    designation: string;
+  };
   createdAt: string;
   updatedAt: string;
 }

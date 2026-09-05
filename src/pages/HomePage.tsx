@@ -19,7 +19,8 @@ import {
   FileCheck2,
   Clock,
   BookOpen,
-  Calendar
+  Calendar,
+  Search
 } from 'lucide-react';
 import { VISA_SERVICES } from '../data/servicesData';
 import { TESTIMONIALS } from '../data/testimonialsData';
@@ -98,7 +99,16 @@ export const HomePage: React.FC<HomePageProps> = ({
                   className="bg-[#07244A] hover:bg-[#0B356D] text-white font-bold px-6 py-4 rounded-xl text-sm border border-[#15488A] transition-all flex items-center gap-2 cursor-pointer"
                 >
                   <FileText className="w-4 h-4 text-[#C5A059]" />
-                  <span>Upload Documents to Portal</span>
+                  <span>Upload Documents</span>
+                </button>
+
+                <button
+                  onClick={() => onNavigate('visa-tracker')}
+                  className="bg-[#061F40] hover:bg-[#092D5A] text-[#F3F4F6] font-bold px-5 py-4 rounded-xl text-sm border border-[#C5A059]/50 hover:border-[#C5A059] transition-all flex items-center gap-2 cursor-pointer shadow-md"
+                >
+                  <Search className="w-4 h-4 text-[#C5A059]" />
+                  <span>Visa Progress Tracker</span>
+                  <span className="text-[10px] bg-[#C5A059] text-[#042354] px-1.5 py-0.5 rounded font-black">LIVE</span>
                 </button>
               </div>
 
@@ -668,7 +678,12 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div className="space-y-2 text-xs text-[#D1D5DB]">
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-[#C5A059]" />
-                <span className="font-bold text-white">+92 340 1207525</span>
+                <a
+                  href="tel:+923401207525"
+                  className="font-bold text-white hover:text-[#C5A059] transition-colors"
+                >
+                  +92 340 1207525
+                </a>
               </div>
               <div className="flex items-center gap-2">
                 <Building className="w-4 h-4 text-[#C5A059]" />
@@ -688,13 +703,20 @@ export const HomePage: React.FC<HomePageProps> = ({
                 Book Office Appointment
               </button>
               <a
-                href="https://wa.me/923401207525?text=Hello%20VartiMax%20Consultant,%20I%20want%20to%20visit%20your%20Islamabad%20office."
+                href="tel:+923401207525"
+                className="bg-[#042354] hover:bg-[#073273] text-white border border-[#C5A059]/40 font-bold px-5 py-3 rounded-xl text-xs transition-all shadow flex items-center gap-2"
+              >
+                <Phone className="w-3.5 h-3.5 text-[#C5A059]" />
+                <span>Call Helpline</span>
+              </a>
+              <a
+                href="https://wa.me/923401207525"
                 target="_blank"
-                rel="noopener noreferrer"
-                className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-6 py-3 rounded-xl text-xs transition-all shadow flex items-center gap-2"
+                rel="noopener"
+                className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-5 py-3 rounded-xl text-xs transition-all shadow flex items-center gap-2"
               >
                 <Phone className="w-3.5 h-3.5" />
-                <span>WhatsApp Desk</span>
+                <span>WhatsApp Us</span>
               </a>
             </div>
           </div>
