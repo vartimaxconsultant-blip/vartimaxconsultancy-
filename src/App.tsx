@@ -19,6 +19,7 @@ import { ContactPage } from './pages/ContactPage';
 import { BlogsPage } from './pages/BlogsPage';
 import { BlogDetailPage } from './pages/BlogDetailPage';
 import { CrmPortalPage } from './pages/CrmPortalPage';
+import { EligibilityHubPage } from './pages/EligibilityHubPage';
 import { QuickAssessmentWidget } from './components/QuickAssessmentWidget';
 
 import { VISA_SERVICES } from './data/servicesData';
@@ -39,7 +40,8 @@ function parseRouteFromLocation(): string {
     if (hash.startsWith('blog-')) return hash;
     if (hash === 'visa-tracker' || hash === 'tracker') return 'visa-tracker';
     if (hash === 'document-portal') return 'document-portal';
-    if (hash === 'assessment') return 'assessment';
+    if (hash === 'assessment' || hash === 'eligibility') return 'assessment';
+    if (hash === 'quiz' || hash === 'visa-quiz' || hash === 'eligibility-quiz') return 'quiz';
     if (hash === 'ai-file-assistant') return 'ai-file-assistant';
     if (hash === 'crm') return 'crm';
     if (hash === 'about') return 'about';
@@ -57,7 +59,8 @@ function parseRouteFromLocation(): string {
   }
   if (path === 'visa-tracker' || path === 'tracker') return 'visa-tracker';
   if (path === 'document-portal') return 'document-portal';
-  if (path === 'assessment') return 'assessment';
+  if (path === 'assessment' || path === 'eligibility') return 'assessment';
+  if (path === 'quiz' || path === 'visa-quiz' || path === 'eligibility-quiz') return 'quiz';
   if (path === 'ai-file-assistant') return 'ai-file-assistant';
   if (path === 'crm') return 'crm';
   if (path === 'about') return 'about';
@@ -119,8 +122,8 @@ function AppContent() {
       document.title = 'Secure Client Visa Document Upload Portal | VartiMax Consultant';
     } else if (currentRoute === 'blogs') {
       document.title = 'Visa Guides, Checklists & Refusal Solutions | VartiMax Islamabad';
-    } else if (currentRoute === 'assessment') {
-      document.title = 'Calculate Visa Acceptance Score | VartiMax Consultant';
+    } else if (currentRoute === 'assessment' || currentRoute === 'quiz') {
+      document.title = 'Interactive Visa Eligibility Quiz & Acceptance Calculator | VartiMax Consultant';
     } else if (currentRoute === 'crm') {
       document.title = 'CRM Staff Workspace & Agent Desks | VartiMax Consultant';
     } else {
@@ -232,13 +235,12 @@ function AppContent() {
           />
         )}
 
-        {currentRoute === 'assessment' && (
-          <div className="max-w-4xl mx-auto py-12 px-4 sm:px-8">
-            <QuickAssessmentWidget
-              onOpenConsultation={() => handleOpenConsultation()}
-              compact={false}
-            />
-          </div>
+        {(currentRoute === 'assessment' || currentRoute === 'quiz') && (
+          <EligibilityHubPage
+            initialTab={currentRoute === 'quiz' ? 'quiz' : 'calculator'}
+            onOpenConsultation={(country, category) => handleOpenConsultation(country, category)}
+            onNavigateToServices={(slug) => handleNavigate(`service-${slug}`)}
+          />
         )}
 
         {currentRoute === 'ai-file-assistant' && <AiFileBuilderPage />}

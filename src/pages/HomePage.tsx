@@ -26,6 +26,7 @@ import { VISA_SERVICES } from '../data/servicesData';
 import { TESTIMONIALS } from '../data/testimonialsData';
 import { BLOG_POSTS } from '../data/blogsData';
 import { QuickAssessmentWidget } from '../components/QuickAssessmentWidget';
+import { VisaEligibilityQuiz } from '../components/VisaEligibilityQuiz';
 import { SEO_IMAGES } from '../data/seoImages';
 
 interface HomePageProps {
@@ -337,7 +338,31 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </section>
 
-      {/* 4. VISUAL EMBASSY DOSSIER & LOGISTICS FEATURE */}
+      {/* 4. INTERACTIVE VISA ELIGIBILITY QUIZ SECTION */}
+      <section className="py-16 px-4 sm:px-8 bg-gradient-to-b from-[#092E5E] via-[#061F40] to-[#092E5E] border-b border-[#0C356A]">
+        <div className="max-w-5xl mx-auto space-y-6">
+          <div className="text-center space-y-2 max-w-2xl mx-auto mb-8">
+            <div className="inline-flex items-center gap-1.5 text-xs font-extrabold text-[#C5A059] bg-[#C5A059]/20 px-3 py-1 rounded-full border border-[#C5A059]/40">
+              <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
+              <span>60-SECOND PROFILE EVALUATION</span>
+            </div>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-white font-serif">
+              Unsure Which Visa Fits Your Profile?
+            </h2>
+            <p className="text-xs sm:text-sm text-[#D1D5DB] leading-relaxed">
+              Take our interactive 4-question quiz to instantly uncover your strongest visa route, personalized acceptance probability, and tailored document checklist.
+            </p>
+          </div>
+
+          <VisaEligibilityQuiz
+            onOpenConsultation={onOpenConsultation}
+            onNavigateToServices={onSelectService}
+            compact={false}
+          />
+        </div>
+      </section>
+
+      {/* 5. VISUAL EMBASSY DOSSIER & LOGISTICS FEATURE */}
       <section className="py-16 px-4 sm:px-8 bg-[#061F40] border-b border-[#0C356A]">
         <div className="max-w-7xl mx-auto space-y-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">

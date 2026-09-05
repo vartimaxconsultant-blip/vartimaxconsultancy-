@@ -154,6 +154,15 @@ export const Footer: React.FC<FooterProps> = ({
             </li>
             <li>
               <a
+                href="#quiz"
+                onClick={(e) => { e.preventDefault(); handleNav('quiz'); }}
+                className="hover:text-[#C5A059] transition-colors cursor-pointer text-left block text-[#C5A059] font-semibold"
+              >
+                Interactive Visa Eligibility Quiz
+              </a>
+            </li>
+            <li>
+              <a
                 href="#eligibility-calculator"
                 onClick={(e) => { e.preventDefault(); handleNav('assessment'); }}
                 className="hover:text-[#C5A059] transition-colors cursor-pointer text-left block"

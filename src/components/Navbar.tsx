@@ -200,11 +200,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           <a
             href="#eligibility-calculator"
             onClick={(e) => { e.preventDefault(); handleNav('assessment'); }}
-            className={`whitespace-nowrap transition-colors hover:text-[#C5A059] cursor-pointer py-1 ${
-              currentRoute === 'assessment' ? 'text-[#C5A059] font-bold border-b-2 border-[#C5A059]' : ''
+            className={`whitespace-nowrap flex items-center gap-1 transition-colors hover:text-[#C5A059] cursor-pointer py-1 ${
+              currentRoute === 'assessment' || currentRoute === 'quiz' ? 'text-[#C5A059] font-bold border-b-2 border-[#C5A059]' : ''
             }`}
           >
-            Eligibility Check
+            <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
+            <span>Eligibility Quiz</span>
           </a>
 
           <a
@@ -344,9 +345,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             <a
               href="#eligibility-calculator"
               onClick={(e) => { e.preventDefault(); handleNav('assessment'); }}
-              className="text-left px-3 py-2 rounded-lg hover:bg-slate-50"
+              className="text-left px-3 py-2 rounded-lg hover:bg-slate-50 flex items-center gap-2"
             >
-              Eligibility Calculator
+              <Sparkles className="w-4 h-4 text-[#C5A059]" />
+              <span>Visa Eligibility Quiz &amp; Calculator</span>
             </a>
 
             <a
