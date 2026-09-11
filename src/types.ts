@@ -22,6 +22,7 @@ export interface UploadedFileDoc {
   previewUrl?: string;
   status: 'pending' | 'verified' | 'action_required';
   adminFeedback?: string;
+  rawFile?: File;
 }
 
 export type VisaApplicationStatus =
