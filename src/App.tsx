@@ -26,46 +26,81 @@ import { VISA_SERVICES } from './data/servicesData';
 import { BLOG_POSTS } from './data/blogsData';
 import { VisaCategory } from './types';
 
-function parseRouteFromLocation(): string {
+export function routeToPath(route: string): string {
+  if (route === 'home' || !route) return '/';
+  if (route === 'services') return '/services';
+  if (route === 'blogs') return '/blogs';
+  if (route === 'about') return '/about';
+  if (route === 'contact') return '/contact';
+  if (route === 'visa-tracker' || route === 'tracker') return '/visa-tracker';
+  if (route === 'document-portal') return '/document-portal';
+  if (route === 'assessment') return '/assessment';
+  if (route === 'quiz') return '/quiz';
+  if (route === 'ai-file-assistant') return '/ai-file-assistant';
+  if (route === 'crm') return '/crm';
+  if (route.startsWith('service-')) {
+    const slug = route.replace('service-', '');
+    return `/services/${slug}`;
+  }
+  if (route.startsWith('blog-')) {
+    const slug = route.replace('blog-', '');
+    return `/blogs/${slug}`;
+  }
+  return `/${route}`;
+}
+
+export function parseRouteFromLocation(): string {
   if (typeof window === 'undefined') return 'home';
 
+  const pathname = window.location.pathname.replace(/^\/+/, '').replace(/\/+$/, '').trim();
   const hash = window.location.hash.replace(/^#\/?/, '').trim();
-  const path = window.location.pathname.replace(/^\//, '').trim();
 
-  // Check hash first (standard SPA client routing)
+  // 1. Prioritize clean pathname (Primary static/Vercel URL)
+  if (pathname) {
+    if (pathname.startsWith('services/')) {
+      const slug = pathname.replace('services/', '');
+      return `service-${slug}`;
+    }
+    if (pathname === 'services') return 'services';
+    if (pathname.startsWith('blogs/')) {
+      const slug = pathname.replace('blogs/', '');
+      return `blog-${slug}`;
+    }
+    if (pathname === 'blogs') return 'blogs';
+    if (pathname === 'visa-tracker' || pathname === 'tracker') return 'visa-tracker';
+    if (pathname === 'document-portal') return 'document-portal';
+    if (pathname === 'assessment' || pathname === 'eligibility' || pathname === 'eligibility-calculator') return 'assessment';
+    if (pathname === 'quiz' || pathname === 'visa-quiz' || pathname === 'eligibility-quiz') return 'quiz';
+    if (pathname === 'ai-file-assistant' || pathname === 'ai-builder') return 'ai-file-assistant';
+    if (pathname === 'crm') return 'crm';
+    if (pathname === 'about') return 'about';
+    if (pathname === 'contact') return 'contact';
+  }
+
+  // 2. Legacy hash fallback with seamless migration to clean path
   if (hash) {
-    if (hash.startsWith('services/')) return `service-${hash.replace('services/', '')}`;
-    if (hash.startsWith('service-')) return hash;
-    if (hash.startsWith('blogs/')) return `blog-${hash.replace('blogs/', '')}`;
-    if (hash.startsWith('blog-')) return hash;
-    if (hash === 'visa-tracker' || hash === 'tracker') return 'visa-tracker';
-    if (hash === 'document-portal') return 'document-portal';
-    if (hash === 'assessment' || hash === 'eligibility') return 'assessment';
-    if (hash === 'quiz' || hash === 'visa-quiz' || hash === 'eligibility-quiz') return 'quiz';
-    if (hash === 'ai-file-assistant') return 'ai-file-assistant';
-    if (hash === 'crm') return 'crm';
-    if (hash === 'about') return 'about';
-    if (hash === 'contact') return 'contact';
-    if (hash === 'blogs') return 'blogs';
-    if (hash === 'home' || hash === '') return 'home';
-  }
+    let resolved = 'home';
+    if (hash.startsWith('services/')) resolved = `service-${hash.replace('services/', '')}`;
+    else if (hash.startsWith('service-')) resolved = hash;
+    else if (hash.startsWith('blogs/')) resolved = `blog-${hash.replace('blogs/', '')}`;
+    else if (hash.startsWith('blog-')) resolved = hash;
+    else if (hash === 'services') resolved = 'services';
+    else if (hash === 'blogs') resolved = 'blogs';
+    else if (hash === 'about') resolved = 'about';
+    else if (hash === 'contact') resolved = 'contact';
+    else if (hash === 'visa-tracker' || hash === 'tracker') resolved = 'visa-tracker';
+    else if (hash === 'document-portal') resolved = 'document-portal';
+    else if (hash === 'assessment' || hash === 'eligibility' || hash === 'eligibility-calculator') resolved = 'assessment';
+    else if (hash === 'quiz' || hash === 'visa-quiz' || hash === 'eligibility-quiz') resolved = 'quiz';
+    else if (hash === 'ai-file-assistant' || hash === 'ai-builder') resolved = 'ai-file-assistant';
+    else if (hash === 'crm') resolved = 'crm';
 
-  // Check pathname
-  if (path.startsWith('services/')) {
-    return `service-${path.replace('services/', '')}`;
+    const cleanPath = routeToPath(resolved);
+    if (typeof window.history.replaceState === 'function') {
+      window.history.replaceState({}, '', cleanPath);
+    }
+    return resolved;
   }
-  if (path.startsWith('blogs/')) {
-    return `blog-${path.replace('blogs/', '')}`;
-  }
-  if (path === 'visa-tracker' || path === 'tracker') return 'visa-tracker';
-  if (path === 'document-portal') return 'document-portal';
-  if (path === 'assessment' || path === 'eligibility') return 'assessment';
-  if (path === 'quiz' || path === 'visa-quiz' || path === 'eligibility-quiz') return 'quiz';
-  if (path === 'ai-file-assistant') return 'ai-file-assistant';
-  if (path === 'crm') return 'crm';
-  if (path === 'about') return 'about';
-  if (path === 'contact') return 'contact';
-  if (path === 'blogs') return 'blogs';
 
   return 'home';
 }
@@ -84,11 +119,11 @@ function AppContent() {
       setCurrentRoute(detectedRoute);
     };
 
-    window.addEventListener('hashchange', handleUrlChange);
     window.addEventListener('popstate', handleUrlChange);
+    window.addEventListener('hashchange', handleUrlChange);
     return () => {
-      window.removeEventListener('hashchange', handleUrlChange);
       window.removeEventListener('popstate', handleUrlChange);
+      window.removeEventListener('hashchange', handleUrlChange);
     };
   }, []);
 
@@ -98,7 +133,12 @@ function AppContent() {
     : null;
 
   const currentService = selectedServiceSlug
-    ? VISA_SERVICES.find((s) => s.slug === selectedServiceSlug)
+    ? VISA_SERVICES.find((s) => s.slug === selectedServiceSlug) ||
+      (selectedServiceSlug === 'schengen-file-preparation'
+        ? VISA_SERVICES.find((s) => s.slug === 'schengen-visit-visa-consultant-islamabad')
+        : selectedServiceSlug === 'usa-visa-interview-coaching'
+        ? VISA_SERVICES.find((s) => s.slug === 'usa-visit-b1-b2-student-f1-visa')
+        : null)
     : null;
 
   // Find active blog post if route starts with 'blog-'
@@ -107,15 +147,50 @@ function AppContent() {
     : null;
 
   const currentBlogPost = selectedBlogSlug
-    ? BLOG_POSTS.find((b) => b.slug === selectedBlogSlug)
+    ? BLOG_POSTS.find((b) => b.slug === selectedBlogSlug) ||
+      BLOG_POSTS.find((b) => b.slug.includes(selectedBlogSlug) || selectedBlogSlug.includes(b.slug))
     : null;
 
-  // Dynamically update document title and meta description for SEO
+  // Scroll to services section if route is 'services'
   useEffect(() => {
+    if (currentRoute === 'services') {
+      const timer = setTimeout(() => {
+        const elem = document.getElementById('services-section');
+        if (elem) {
+          elem.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [currentRoute]);
+
+  // Dynamically update document title, canonical link, and OpenGraph URL for SEO
+  useEffect(() => {
+    const currentPath = routeToPath(currentRoute);
+    const canonicalUrl = `https://vartimaxconsultancy.vercel.app${currentPath === '/' ? '' : currentPath}`;
+
+    // Update canonical link element
+    let canonicalTag = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (canonicalTag) {
+      canonicalTag.href = canonicalUrl;
+    }
+
+    // Update OG & Twitter URL meta tags
+    const ogUrlTag = document.querySelector<HTMLMetaElement>('meta[property="og:url"]');
+    if (ogUrlTag) {
+      ogUrlTag.content = canonicalUrl;
+    }
+    const twitterUrlTag = document.querySelector<HTMLMetaElement>('meta[name="twitter:url"]');
+    if (twitterUrlTag) {
+      twitterUrlTag.content = canonicalUrl;
+    }
+
     if (currentService) {
       document.title = `${currentService.title} | VartiMax Consultant Islamabad`;
     } else if (currentBlogPost) {
       document.title = currentBlogPost.metaTitle || `${currentBlogPost.title} | VartiMax Consultant`;
+    } else if (currentRoute === 'services') {
+      document.title = 'Embassy File Preparation & Visa Services | VartiMax Consultant Islamabad';
     } else if (currentRoute === 'visa-tracker' || currentRoute === 'tracker') {
       document.title = 'Client Visa Progress Tracker & Embassy Milestone Portal | VartiMax Consultant';
     } else if (currentRoute === 'document-portal') {
@@ -126,6 +201,10 @@ function AppContent() {
       document.title = 'Interactive Visa Eligibility Quiz & Acceptance Calculator | VartiMax Consultant';
     } else if (currentRoute === 'crm') {
       document.title = 'CRM Staff Workspace & Agent Desks | VartiMax Consultant';
+    } else if (currentRoute === 'about') {
+      document.title = 'About VartiMax Consultant | Islamabad Premier Visa Advisory';
+    } else if (currentRoute === 'contact') {
+      document.title = 'Contact VartiMax Consultant | Islamabad Office & Helpline';
     } else {
       document.title = 'VartiMax Consultant | Visa File Preparation & International Admissions Islamabad';
     }
@@ -165,15 +244,23 @@ function AppContent() {
   }, []);
 
   const handleNavigate = (route: string) => {
-    setCurrentRoute(route);
-    let targetHash = route;
-    if (route.startsWith('service-')) {
-      targetHash = `services/${route.replace('service-', '')}`;
-    } else if (route.startsWith('blog-')) {
-      targetHash = `blogs/${route.replace('blog-', '')}`;
+    if (route === 'services') {
+      if (currentRoute === 'home' || currentRoute === 'services') {
+        const elem = document.getElementById('services-section');
+        if (elem) {
+          elem.scrollIntoView({ behavior: 'smooth' });
+          if (window.location.pathname !== '/services') {
+            window.history.pushState({}, '', '/services');
+          }
+          return;
+        }
+      }
     }
-    if (window.location.hash.replace(/^#/, '') !== targetHash) {
-      window.location.hash = targetHash;
+
+    setCurrentRoute(route);
+    const targetPath = routeToPath(route);
+    if (window.location.pathname !== targetPath) {
+      window.history.pushState({}, '', targetPath);
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -195,7 +282,7 @@ function AppContent() {
 
       {/* Main Page View Router */}
       <main className="flex-1">
-        {currentRoute === 'home' && (
+        {(currentRoute === 'home' || currentRoute === 'services') && (
           <HomePage
             onNavigate={handleNavigate}
             onOpenConsultation={() => handleOpenConsultation()}
@@ -203,7 +290,7 @@ function AppContent() {
           />
         )}
 
-        {currentService && (
+        {currentRoute.startsWith('service-') && currentService && (
           <ServiceDetailPage
             service={currentService}
             onOpenConsultation={() =>
@@ -213,6 +300,29 @@ function AppContent() {
           />
         )}
 
+        {currentRoute.startsWith('service-') && !currentService && (
+          <div className="max-w-4xl mx-auto px-4 py-24 text-center space-y-6">
+            <h1 className="text-3xl font-extrabold text-white">Visa Service Not Found</h1>
+            <p className="text-slate-300">The visa category or file preparation service you requested is not available.</p>
+            <div className="flex justify-center gap-4">
+              <a
+                href="/services"
+                onClick={(e) => { e.preventDefault(); handleNavigate('services'); }}
+                className="bg-[#C5A059] text-[#061F40] font-bold px-6 py-3 rounded-xl cursor-pointer"
+              >
+                Browse All Services
+              </a>
+              <a
+                href="/"
+                onClick={(e) => { e.preventDefault(); handleNavigate('home'); }}
+                className="bg-[#07244A] border border-[#15488A] text-white font-bold px-6 py-3 rounded-xl cursor-pointer"
+              >
+                Return to Home
+              </a>
+            </div>
+          </div>
+        )}
+
         {currentRoute === 'blogs' && (
           <BlogsPage
             onNavigate={handleNavigate}
@@ -220,12 +330,35 @@ function AppContent() {
           />
         )}
 
-        {currentBlogPost && (
+        {currentRoute.startsWith('blog-') && currentBlogPost && (
           <BlogDetailPage
             post={currentBlogPost}
             onNavigate={handleNavigate}
             onOpenConsultation={(country) => handleOpenConsultation(country)}
           />
+        )}
+
+        {currentRoute.startsWith('blog-') && !currentBlogPost && (
+          <div className="max-w-4xl mx-auto px-4 py-24 text-center space-y-6">
+            <h1 className="text-3xl font-extrabold text-white">Article Not Found</h1>
+            <p className="text-slate-300">The visa guide or embassy advisory article you are looking for has moved or does not exist.</p>
+            <div className="flex justify-center gap-4">
+              <a
+                href="/blogs"
+                onClick={(e) => { e.preventDefault(); handleNavigate('blogs'); }}
+                className="bg-[#C5A059] text-[#061F40] font-bold px-6 py-3 rounded-xl cursor-pointer"
+              >
+                View All Visa Guides
+              </a>
+              <a
+                href="/"
+                onClick={(e) => { e.preventDefault(); handleNavigate('home'); }}
+                className="bg-[#07244A] border border-[#15488A] text-white font-bold px-6 py-3 rounded-xl cursor-pointer"
+              >
+                Return to Home
+              </a>
+            </div>
+          </div>
         )}
 
         {(currentRoute === 'document-portal' || currentRoute === 'visa-tracker' || currentRoute === 'tracker') && (

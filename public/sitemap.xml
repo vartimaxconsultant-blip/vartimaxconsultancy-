@@ -6,173 +6,179 @@
   <!-- Homepage -->
   <url>
     <loc>https://vartimaxconsultancy.vercel.app/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   <!-- Visa Services Catalog -->
   <url>
-    <loc>https://vartimaxconsultancy.vercel.app/#services</loc>
-    <lastmod>2026-09-05</lastmod>
+    <loc>https://vartimaxconsultancy.vercel.app/services</loc>
+    <lastmod>2026-09-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Service Subpages -->
+  <!-- Service Clean URLs -->
   <url>
     <loc>https://vartimaxconsultancy.vercel.app/services/schengen-file-preparation</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://vartimaxconsultancy.vercel.app/services/dummy-flight-hotel-booking</loc>
-    <lastmod>2026-09-05</lastmod>
+    <loc>https://vartimaxconsultancy.vercel.app/services/schengen-visit-visa-consultant-islamabad</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://vartimaxconsultancy.vercel.app/services/canada-student-visa-consultancy</loc>
+    <lastmod>2026-09-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://vartimaxconsultancy.vercel.app/services/usa-visa-interview-coaching</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://vartimaxconsultancy.vercel.app/#service-schengen-visa</loc>
-    <lastmod>2026-09-05</lastmod>
+    <loc>https://vartimaxconsultancy.vercel.app/services/usa-visit-b1-b2-student-f1-visa</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://vartimaxconsultancy.vercel.app/services/worldwide-student-admissions</loc>
+    <lastmod>2026-09-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://vartimaxconsultancy.vercel.app/#service-canada-visa</loc>
-    <lastmod>2026-09-05</lastmod>
+    <loc>https://vartimaxconsultancy.vercel.app/services/uae-visit-residence-golden-visa</loc>
+    <lastmod>2026-09-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://vartimaxconsultancy.vercel.app/#service-usa-b1b2-visa</loc>
-    <lastmod>2026-09-05</lastmod>
+    <loc>https://vartimaxconsultancy.vercel.app/services/umrah-visa-packages</loc>
+    <lastmod>2026-09-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://vartimaxconsultancy.vercel.app/#service-uk-student-visit</loc>
-    <lastmod>2026-09-05</lastmod>
+    <loc>https://vartimaxconsultancy.vercel.app/services/dummy-flight-hotel-booking</loc>
+    <lastmod>2026-09-21</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://vartimaxconsultancy.vercel.app/#service-uae-visit-visa</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://vartimaxconsultancy.vercel.app/#service-umrah-visa-packages</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
   </url>
 
   <!-- Interactive AI & Assessment Tools -->
   <url>
     <loc>https://vartimaxconsultancy.vercel.app/visa-tracker</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://vartimaxconsultancy.vercel.app/#eligibility-calculator</loc>
-    <lastmod>2026-09-05</lastmod>
+    <loc>https://vartimaxconsultancy.vercel.app/assessment</loc>
+    <lastmod>2026-09-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://vartimaxconsultancy.vercel.app/#ai-builder</loc>
-    <lastmod>2026-09-05</lastmod>
+    <loc>https://vartimaxconsultancy.vercel.app/ai-file-assistant</loc>
+    <lastmod>2026-09-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://vartimaxconsultancy.vercel.app/#document-portal</loc>
-    <lastmod>2026-09-05</lastmod>
+    <loc>https://vartimaxconsultancy.vercel.app/document-portal</loc>
+    <lastmod>2026-09-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <!-- Knowledge Hub & SEO Guides -->
   <url>
-    <loc>https://vartimaxconsultancy.vercel.app/#blogs</loc>
-    <lastmod>2026-09-05</lastmod>
+    <loc>https://vartimaxconsultancy.vercel.app/blogs</loc>
+    <lastmod>2026-09-21</lastmod>
     <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://vartimaxconsultancy.vercel.app/blogs/how-to-get-a-schengen-visa-from-pakistan-in-2026-without-getting-refused</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://vartimaxconsultancy.vercel.app/blogs/schengen-visa-from-pakistan-complete-checklist-guide</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://vartimaxconsultancy.vercel.app/blogs/canada-study-visa-sds-vs-non-sds-pakistan-guide</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://vartimaxconsultancy.vercel.app/blogs/usa-b1-b2-visa-interview-questions-islamabad-embassy</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://vartimaxconsultancy.vercel.app/blogs/how-to-overcome-visa-refusals-pakistan-appeal-guide</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://vartimaxconsultancy.vercel.app/blogs/uk-student-and-tourist-visa-requirements-pakistan</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://vartimaxconsultancy.vercel.app/blogs/umrah-visa-saudi-tourist-visa-pakistan-guide</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://vartimaxconsultancy.vercel.app/blogs/how-to-draft-embassy-compliant-cover-letter-schengen-visa-pakistan</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://vartimaxconsultancy.vercel.app/blogs/top-reasons-canadian-study-visa-sop-refusals-section-214b-how-to-fix</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://vartimaxconsultancy.vercel.app/blogs/complete-checklist-29-schengen-countries-visa-file-creation-islamabad</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://vartimaxconsultancy.vercel.app/#blog-how-to-apply-schengen-visit-visa-pakistan-bank-balance</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://vartimaxconsultancy.vercel.app/#blog-canada-student-visa-sds-vs-non-sds-pakistan-guide</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://vartimaxconsultancy.vercel.app/#blog-usa-b1-b2-visa-interview-questions-islamabad-embassy</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://vartimaxconsultancy.vercel.app/#blog-uk-student-tourist-visa-2026-maintenance-funds-tb-test</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://vartimaxconsultancy.vercel.app/#blog-umrah-visa-saudi-tourist-multiple-entry-pakistan-guide</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://vartimaxconsultancy.vercel.app/#blog-how-to-overcome-section-214b-schengen-refusal-pakistan</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
   </url>
 
   <!-- About & Contact Pages -->
   <url>
-    <loc>https://vartimaxconsultancy.vercel.app/#about</loc>
-    <lastmod>2026-09-05</lastmod>
+    <loc>https://vartimaxconsultancy.vercel.app/about</loc>
+    <lastmod>2026-09-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vartimaxconsultancy.vercel.app/#contact</loc>
-    <lastmod>2026-09-05</lastmod>
+    <loc>https://vartimaxconsultancy.vercel.app/contact</loc>
+    <lastmod>2026-09-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

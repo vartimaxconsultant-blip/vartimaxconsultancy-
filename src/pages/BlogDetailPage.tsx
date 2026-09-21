@@ -49,13 +49,14 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({
       {/* 1. TOP BREADCRUMB & HEADER */}
       <div className="bg-[#061F40] border-b border-[#0C356A] py-6 px-4 sm:px-8">
         <div className="max-w-7xl mx-auto space-y-4">
-          <button
-            onClick={() => onNavigate('blogs')}
+          <a
+            href="/blogs"
+            onClick={(e) => { e.preventDefault(); onNavigate('blogs'); }}
             className="inline-flex items-center gap-1.5 text-xs font-bold text-[#C5A059] hover:text-[#D4AF37] transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Back to All Visa Guides & Knowledge Hub</span>
-          </button>
+          </a>
 
           <div className="flex flex-wrap items-center gap-3 text-xs text-[#93C5FD]">
             <span className="bg-[#C5A059] text-[#042354] font-extrabold px-3 py-1 rounded-full text-xs">
@@ -395,13 +396,14 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({
                   <span>Book Free Consultation</span>
                 </button>
 
-                <button
-                  onClick={() => onNavigate('assessment')}
+                <a
+                  href="/assessment"
+                  onClick={(e) => { e.preventDefault(); onNavigate('assessment'); }}
                   className="w-full bg-[#061F40] hover:bg-[#0C356A] text-white border border-[#15488A] font-bold py-3 rounded-xl text-xs transition-all cursor-pointer flex items-center justify-center gap-2"
                 >
                   <Sparkles className="w-4 h-4 text-[#C5A059]" />
                   <span>Calculate Visa Score</span>
-                </button>
+                </a>
 
                 <a
                   href={`https://wa.me/923401207525?text=Hello%20VartiMax,%20I%20read%20your%20article%20on%20${encodeURIComponent(post.title)}%20and%20need%20assistance.`}
@@ -421,9 +423,10 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({
 
             {/* Quick Link to Dedicated Visa Service (if available) */}
             {post.relatedServiceSlug && (
-              <div
-                onClick={() => onNavigate(`service-${post.relatedServiceSlug}`)}
-                className="bg-[#061F40] border border-[#15488A] hover:border-[#C5A059] rounded-2xl p-5 space-y-2 cursor-pointer transition-all group"
+              <a
+                href={`/services/${post.relatedServiceSlug}`}
+                onClick={(e) => { e.preventDefault(); onNavigate(`service-${post.relatedServiceSlug}`); }}
+                className="block bg-[#061F40] border border-[#15488A] hover:border-[#C5A059] rounded-2xl p-5 space-y-2 cursor-pointer transition-all group"
               >
                 <div className="text-[11px] font-bold uppercase text-[#C5A059]">
                   Related Service Page
@@ -435,13 +438,14 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({
                 <p className="text-xs text-[#93C5FD]/80">
                   View complete checklists, embassy fees, processing times, and file creation steps.
                 </p>
-              </div>
+              </a>
             )}
 
             {/* AI Generator Promo */}
-            <div
-              onClick={() => onNavigate('ai-file-assistant')}
-              className="bg-gradient-to-br from-[#061F40] to-[#0B356D] border border-[#15488A] rounded-2xl p-5 space-y-3 cursor-pointer hover:border-[#C5A059] transition-all"
+            <a
+              href="/ai-file-assistant"
+              onClick={(e) => { e.preventDefault(); onNavigate('ai-file-assistant'); }}
+              className="block bg-gradient-to-br from-[#061F40] to-[#0B356D] border border-[#15488A] rounded-2xl p-5 space-y-3 cursor-pointer hover:border-[#C5A059] transition-all"
             >
               <div className="flex items-center gap-2 text-[#C5A059]">
                 <FileText className="w-4 h-4" />
@@ -457,7 +461,7 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({
                 <span>Try AI Cover Letter Builder</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </div>
@@ -469,19 +473,21 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({
             <h2 className="text-xl sm:text-2xl font-bold text-white">
               Related Embassy Guides & Advice
             </h2>
-            <button
-              onClick={() => onNavigate('blogs')}
+            <a
+              href="/blogs"
+              onClick={(e) => { e.preventDefault(); onNavigate('blogs'); }}
               className="text-xs font-bold text-[#C5A059] hover:text-white transition-colors cursor-pointer"
             >
               View All Guides →
-            </button>
+            </a>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {relatedPosts.map((rPost) => (
-              <div
+              <a
                 key={rPost.id}
-                onClick={() => onNavigate(`blog-${rPost.slug}`)}
+                href={`/blogs/${rPost.slug}`}
+                onClick={(e) => { e.preventDefault(); onNavigate(`blog-${rPost.slug}`); }}
                 className="bg-[#07244A] rounded-2xl overflow-hidden border border-[#15488A] hover:border-[#C5A059] transition-all shadow cursor-pointer group flex flex-col justify-between"
               >
                 <div>
@@ -519,7 +525,7 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </section>

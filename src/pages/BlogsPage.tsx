@@ -109,9 +109,10 @@ export const BlogsPage: React.FC<BlogsPageProps> = ({ onNavigate, onOpenConsulta
       {/* 2. FEATURED ARTICLE BANNER (If viewing All and no search) */}
       {selectedCategory === 'All' && !searchQuery && featuredPost && (
         <section className="max-w-7xl mx-auto px-4 sm:px-8 -mt-6">
-          <div
-            onClick={() => onNavigate(`blog-${featuredPost.slug}`)}
-            className="bg-[#07244A] border-2 border-[#C5A059]/40 rounded-2xl overflow-hidden shadow-2xl hover:border-[#C5A059] transition-all cursor-pointer group grid grid-cols-1 lg:grid-cols-12"
+          <a
+            href={`/blogs/${featuredPost.slug}`}
+            onClick={(e) => { e.preventDefault(); onNavigate(`blog-${featuredPost.slug}`); }}
+            className="block bg-[#07244A] border-2 border-[#C5A059]/40 rounded-2xl overflow-hidden shadow-2xl hover:border-[#C5A059] transition-all cursor-pointer group grid grid-cols-1 lg:grid-cols-12"
           >
             <div className="lg:col-span-6 relative h-64 sm:h-80 lg:h-auto overflow-hidden">
               <img
@@ -191,7 +192,7 @@ export const BlogsPage: React.FC<BlogsPageProps> = ({ onNavigate, onOpenConsulta
                 </span>
               </div>
             </div>
-          </div>
+          </a>
         </section>
       )}
 
@@ -232,9 +233,10 @@ export const BlogsPage: React.FC<BlogsPageProps> = ({ onNavigate, onOpenConsulta
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredPosts.map((post) => (
-              <article
+              <a
                 key={post.id}
-                onClick={() => onNavigate(`blog-${post.slug}`)}
+                href={`/blogs/${post.slug}`}
+                onClick={(e) => { e.preventDefault(); onNavigate(`blog-${post.slug}`); }}
                 className="bg-[#07244A] rounded-2xl overflow-hidden border border-[#15488A] hover:border-[#C5A059] transition-all duration-200 shadow-md hover:shadow-xl flex flex-col justify-between group cursor-pointer"
               >
                 <div>
@@ -312,7 +314,7 @@ export const BlogsPage: React.FC<BlogsPageProps> = ({ onNavigate, onOpenConsulta
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </div>
-              </article>
+              </a>
             ))}
           </div>
         )}

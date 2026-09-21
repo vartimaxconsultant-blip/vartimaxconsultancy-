@@ -70,9 +70,14 @@ export const Footer: React.FC<FooterProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-8 py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         {/* Col 1: Brand Info */}
         <div className="space-y-4">
-          <div className="bg-white p-3 rounded-xl inline-block shadow-md">
+          <a
+            href="/"
+            onClick={(e) => { e.preventDefault(); handleNav('home'); }}
+            className="bg-white p-3 rounded-xl inline-block shadow-md cursor-pointer"
+            aria-label="VartiMax Consultant Home"
+          >
             <Logo size="md" variant="full" />
-          </div>
+          </a>
           <p className="text-xs text-[#93C5FD]/80 leading-relaxed">
             VartiMax Consultant is Islamabad's premier visa, immigration, and global admissions consultancy. We engineer airtight, embassy-compliant visa files that eliminate refusal risks.
           </p>
@@ -101,7 +106,7 @@ export const Footer: React.FC<FooterProps> = ({
             {VISA_SERVICES.map((s) => (
               <li key={s.slug}>
                 <a
-                  href={`#service-${s.slug}`}
+                  href={`/services/${s.slug}`}
                   onClick={(e) => { e.preventDefault(); handleNav(`service-${s.slug}`); }}
                   className="hover:text-[#C5A059] transition-colors text-left flex items-center justify-between w-full group cursor-pointer"
                 >
@@ -116,7 +121,7 @@ export const Footer: React.FC<FooterProps> = ({
             ))}
             <li>
               <a
-                href="#document-portal"
+                href="/document-portal"
                 onClick={(e) => { e.preventDefault(); handleNav('document-portal'); }}
                 className="text-[#C5A059] font-semibold hover:underline pt-1 inline-flex items-center gap-1 cursor-pointer"
               >
@@ -135,7 +140,7 @@ export const Footer: React.FC<FooterProps> = ({
           <ul className="space-y-2.5 text-xs text-[#93C5FD]/80">
             <li>
               <a
-                href="#blogs"
+                href="/blogs"
                 onClick={(e) => { e.preventDefault(); handleNav('blogs'); }}
                 className="hover:text-[#C5A059] transition-colors cursor-pointer text-left font-semibold text-white flex items-center gap-1.5"
               >
@@ -145,7 +150,7 @@ export const Footer: React.FC<FooterProps> = ({
             </li>
             <li>
               <a
-                href="#document-portal"
+                href="/document-portal"
                 onClick={(e) => { e.preventDefault(); handleNav('document-portal'); }}
                 className="hover:text-[#C5A059] transition-colors cursor-pointer text-left block"
               >
@@ -154,7 +159,7 @@ export const Footer: React.FC<FooterProps> = ({
             </li>
             <li>
               <a
-                href="#quiz"
+                href="/quiz"
                 onClick={(e) => { e.preventDefault(); handleNav('quiz'); }}
                 className="hover:text-[#C5A059] transition-colors cursor-pointer text-left block text-[#C5A059] font-semibold"
               >
@@ -163,7 +168,7 @@ export const Footer: React.FC<FooterProps> = ({
             </li>
             <li>
               <a
-                href="#eligibility-calculator"
+                href="/eligibility-calculator"
                 onClick={(e) => { e.preventDefault(); handleNav('assessment'); }}
                 className="hover:text-[#C5A059] transition-colors cursor-pointer text-left block"
               >
@@ -172,7 +177,7 @@ export const Footer: React.FC<FooterProps> = ({
             </li>
             <li>
               <a
-                href="#ai-builder"
+                href="/ai-file-assistant"
                 onClick={(e) => { e.preventDefault(); handleNav('ai-file-assistant'); }}
                 className="hover:text-[#C5A059] transition-colors cursor-pointer text-left block"
               >
@@ -181,7 +186,7 @@ export const Footer: React.FC<FooterProps> = ({
             </li>
             <li>
               <a
-                href="#about"
+                href="/about"
                 onClick={(e) => { e.preventDefault(); handleNav('about'); }}
                 className="hover:text-[#C5A059] transition-colors cursor-pointer text-left block"
               >
@@ -190,7 +195,7 @@ export const Footer: React.FC<FooterProps> = ({
             </li>
             <li>
               <a
-                href="#contact"
+                href="/contact"
                 onClick={(e) => { e.preventDefault(); handleNav('contact'); }}
                 className="hover:text-[#C5A059] transition-colors cursor-pointer text-left block"
               >

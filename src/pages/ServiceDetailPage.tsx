@@ -103,13 +103,14 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
               <FileCheck2 className="w-4 h-4 text-[#061F40]" />
               <span>Book Visa File Assessment</span>
             </button>
-            <button
-              onClick={onNavigateToPortal}
+            <a
+              href="/document-portal"
+              onClick={(e) => { e.preventDefault(); onNavigateToPortal(); }}
               className="bg-[#061F40] hover:bg-[#0B356D] text-white font-bold px-6 py-3.5 rounded-xl text-sm border border-[#15488A] transition-all flex items-center gap-2 cursor-pointer"
             >
               <FileText className="w-4 h-4 text-[#C5A059]" />
               <span>Upload Documents to Portal</span>
-            </button>
+            </a>
           </div>
         </div>
       </section>
@@ -201,12 +202,13 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                     Official embassy checklist for Pakistani passport holders.
                   </p>
                 </div>
-                <button
-                  onClick={onNavigateToPortal}
+                <a
+                  href="/document-portal"
+                  onClick={(e) => { e.preventDefault(); onNavigateToPortal(); }}
                   className="text-xs font-bold text-[#C5A059] bg-[#C5A059]/20 hover:bg-[#C5A059]/30 border border-[#C5A059]/40 px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
                 >
                   Upload Online
-                </button>
+                </a>
               </div>
 
               <div className="space-y-3">

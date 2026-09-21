@@ -109,18 +109,19 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* Main Navbar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-8 py-3.5 flex items-center justify-between">
         {/* Exact Brand Logo in full authentic colors */}
-        <button
-          onClick={() => handleNav('home')}
+        <a
+          href="/"
+          onClick={(e) => { e.preventDefault(); handleNav('home'); }}
           className="focus:outline-none flex items-center group cursor-pointer text-left"
           aria-label="VartiMax Consultant Home"
         >
           <Logo size="md" variant="full" />
-        </button>
+        </a>
 
         {/* Desktop Navigation Links */}
         <nav className="hidden lg:flex items-center gap-3.5 xl:gap-6 2xl:gap-7 text-[13px] xl:text-sm font-semibold text-[#042354] shrink-0">
           <a
-            href="#home"
+            href="/"
             onClick={(e) => { e.preventDefault(); handleNav('home'); }}
             className={`whitespace-nowrap transition-colors hover:text-[#C5A059] cursor-pointer py-1 ${
               currentRoute === 'home' ? 'text-[#C5A059] font-bold border-b-2 border-[#C5A059]' : ''
@@ -138,7 +139,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
               className={`whitespace-nowrap flex items-center gap-1 transition-colors hover:text-[#C5A059] cursor-pointer py-1 ${
-                currentRoute.startsWith('service-') ? 'text-[#C5A059] font-bold border-b-2 border-[#C5A059]' : ''
+                currentRoute.startsWith('service-') || currentRoute === 'services' ? 'text-[#C5A059] font-bold border-b-2 border-[#C5A059]' : ''
               }`}
             >
               <span>Visa Services</span>
@@ -153,7 +154,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 {VISA_SERVICES.map((svc) => (
                   <a
                     key={svc.slug}
-                    href={`#service-${svc.slug}`}
+                    href={`/services/${svc.slug}`}
                     onClick={(e) => { e.preventDefault(); handleNav(`service-${svc.slug}`); }}
                     className="w-full text-left px-4 py-2.5 hover:bg-slate-50 transition-colors flex items-center justify-between group cursor-pointer"
                   >
@@ -175,7 +176,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           <a
-            href="#visa-tracker"
+            href="/visa-tracker"
             onClick={(e) => { e.preventDefault(); handleNav('visa-tracker'); }}
             className={`whitespace-nowrap flex items-center gap-1.5 transition-colors hover:text-[#C5A059] cursor-pointer py-1 ${
               currentRoute === 'visa-tracker' || currentRoute === 'tracker' ? 'text-[#C5A059] font-bold border-b-2 border-[#C5A059]' : ''
@@ -187,7 +188,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </a>
 
           <a
-            href="#document-portal"
+            href="/document-portal"
             onClick={(e) => { e.preventDefault(); handleNav('document-portal'); }}
             className={`whitespace-nowrap flex items-center gap-1.5 transition-colors hover:text-[#C5A059] cursor-pointer py-1 ${
               currentRoute === 'document-portal' ? 'text-[#C5A059] font-bold border-b-2 border-[#C5A059]' : ''
@@ -198,7 +199,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </a>
 
           <a
-            href="#eligibility-calculator"
+            href="/eligibility-calculator"
             onClick={(e) => { e.preventDefault(); handleNav('assessment'); }}
             className={`whitespace-nowrap flex items-center gap-1 transition-colors hover:text-[#C5A059] cursor-pointer py-1 ${
               currentRoute === 'assessment' || currentRoute === 'quiz' ? 'text-[#C5A059] font-bold border-b-2 border-[#C5A059]' : ''
@@ -209,7 +210,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </a>
 
           <a
-            href="#ai-builder"
+            href="/ai-file-assistant"
             onClick={(e) => { e.preventDefault(); handleNav('ai-file-assistant'); }}
             className={`whitespace-nowrap flex items-center gap-1 transition-colors hover:text-[#C5A059] cursor-pointer py-1 ${
               currentRoute === 'ai-file-assistant' ? 'text-[#C5A059] font-bold border-b-2 border-[#C5A059]' : ''
@@ -220,7 +221,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </a>
 
           <a
-            href="#blogs"
+            href="/blogs"
             onClick={(e) => { e.preventDefault(); handleNav('blogs'); }}
             className={`whitespace-nowrap flex items-center gap-1 transition-colors hover:text-[#C5A059] cursor-pointer py-1 ${
               currentRoute === 'blogs' || currentRoute.startsWith('blog-') ? 'text-[#C5A059] font-bold border-b-2 border-[#C5A059]' : ''
@@ -231,7 +232,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </a>
 
           <a
-            href="#about"
+            href="/about"
             onClick={(e) => { e.preventDefault(); handleNav('about'); }}
             className={`whitespace-nowrap transition-colors hover:text-[#C5A059] cursor-pointer py-1 ${
               currentRoute === 'about' ? 'text-[#C5A059] font-bold border-b-2 border-[#C5A059]' : ''
@@ -241,7 +242,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </a>
 
           <a
-            href="#contact"
+            href="/contact"
             onClick={(e) => { e.preventDefault(); handleNav('contact'); }}
             className={`whitespace-nowrap transition-colors hover:text-[#C5A059] cursor-pointer py-1 ${
               currentRoute === 'contact' ? 'text-[#C5A059] font-bold border-b-2 border-[#C5A059]' : ''
@@ -297,7 +298,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="lg:hidden bg-white border-b border-slate-200 px-4 py-4 space-y-3 shadow-xl animate-in slide-in-from-top duration-200">
           <div className="grid grid-cols-1 gap-2 font-medium text-[#042354] text-sm">
             <a
-              href="#home"
+              href="/"
               onClick={(e) => { e.preventDefault(); handleNav('home'); }}
               className="text-left px-3 py-2 rounded-lg hover:bg-slate-50 font-semibold"
             >
@@ -310,7 +311,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {VISA_SERVICES.map((svc) => (
               <a
                 key={svc.slug}
-                href={`#service-${svc.slug}`}
+                href={`/services/${svc.slug}`}
                 onClick={(e) => { e.preventDefault(); handleNav(`service-${svc.slug}`); }}
                 className="text-left px-5 py-1.5 text-xs text-[#042354] hover:text-[#C5A059] hover:bg-slate-50 flex items-center justify-between"
               >
@@ -322,7 +323,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             ))}
 
             <a
-              href="#visa-tracker"
+              href="/visa-tracker"
               onClick={(e) => { e.preventDefault(); handleNav('visa-tracker'); }}
               className="text-left px-3 py-2 rounded-lg bg-[#C5A059]/10 hover:bg-[#C5A059]/20 flex items-center justify-between text-[#042354] font-bold border border-[#C5A059]/30"
             >
@@ -334,7 +335,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </a>
 
             <a
-              href="#document-portal"
+              href="/document-portal"
               onClick={(e) => { e.preventDefault(); handleNav('document-portal'); }}
               className="text-left px-3 py-2 rounded-lg hover:bg-slate-50 flex items-center gap-2 text-[#9A7420] font-semibold"
             >
@@ -343,7 +344,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </a>
 
             <a
-              href="#eligibility-calculator"
+              href="/eligibility-calculator"
               onClick={(e) => { e.preventDefault(); handleNav('assessment'); }}
               className="text-left px-3 py-2 rounded-lg hover:bg-slate-50 flex items-center gap-2"
             >
@@ -352,7 +353,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </a>
 
             <a
-              href="#ai-builder"
+              href="/ai-file-assistant"
               onClick={(e) => { e.preventDefault(); handleNav('ai-file-assistant'); }}
               className="text-left px-3 py-2 rounded-lg hover:bg-slate-50 flex items-center gap-2"
             >
@@ -361,7 +362,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </a>
 
             <a
-              href="#crm"
+              href="/crm"
               onClick={(e) => { e.preventDefault(); handleNav('crm'); }}
               className="text-left px-3 py-2.5 rounded-lg bg-[#C5A059]/15 hover:bg-[#C5A059]/25 flex items-center justify-between text-[#042354] font-bold border border-[#C5A059]/40"
             >
@@ -373,7 +374,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </a>
 
             <a
-              href="#blogs"
+              href="/blogs"
               onClick={(e) => { e.preventDefault(); handleNav('blogs'); }}
               className="text-left px-3 py-2 rounded-lg hover:bg-slate-50 flex items-center gap-2 text-[#042354] font-semibold"
             >
@@ -382,7 +383,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </a>
 
             <a
-              href="#about"
+              href="/about"
               onClick={(e) => { e.preventDefault(); handleNav('about'); }}
               className="text-left px-3 py-2 rounded-lg hover:bg-slate-50"
             >
@@ -390,7 +391,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </a>
 
             <a
-              href="#contact"
+              href="/contact"
               onClick={(e) => { e.preventDefault(); handleNav('contact'); }}
               className="text-left px-3 py-2 rounded-lg hover:bg-slate-50"
             >

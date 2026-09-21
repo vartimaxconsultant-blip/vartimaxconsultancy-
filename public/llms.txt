@@ -10,15 +10,17 @@
 - **Success Rate**: 90% Embassy File Acceptance Rate
 
 ## Core Services
-- **Schengen Visit Visa**: Cover letter drafting, €30,000 Schengen insurance, verified dummy ticket/hotel bookings, day-wise itineraries for 29 European countries.
-- **Canada Visa & Study Permit**: SDS vs Non-SDS filing, GIC assistance, Statement of Purpose (SOP) crafting, ties to home country proof.
-- **USA B1/B2 & F1 Visa**: DS-160 filling, mock interview coaching for US Embassy Islamabad, ties establishment.
-- **UK Student & Visit Visa**: CAS letter verification, 28-day maintenance funds audit, TB test guidance.
-- **UAE & Gulf Visas**: 30/60 days express tourist visa issuance, express processing.
-- **Umrah & Saudi Visas**: 1-Year Multiple Entry Tourist e-Visas, luxury hotel bookings in Makkah & Madinah.
+- **Schengen Visit Visa**: https://vartimaxconsultancy.vercel.app/services/schengen-file-preparation
+- **Canada Visa & Study Permit**: https://vartimaxconsultancy.vercel.app/services/canada-student-visa-consultancy
+- **USA B1/B2 & F1 Visa**: https://vartimaxconsultancy.vercel.app/services/usa-visa-interview-coaching
+- **UK Student & Visit Visa**: https://vartimaxconsultancy.vercel.app/services/worldwide-student-admissions
+- **UAE & Gulf Visas**: https://vartimaxconsultancy.vercel.app/services/uae-visit-residence-golden-visa
+- **Umrah & Saudi Visas**: https://vartimaxconsultancy.vercel.app/services/umrah-visa-packages
+- **Dummy Flight & Hotel Bookings**: https://vartimaxconsultancy.vercel.app/services/dummy-flight-hotel-booking
 
 ## Interactive Tools
-- **Eligibility Assessment Calculator**: https://vartimaxconsultancy.vercel.app/#eligibility-calculator
-- **AI Embassy File Builder**: https://vartimaxconsultancy.vercel.app/#ai-builder
-- **Secure Document Upload Portal**: https://vartimaxconsultancy.vercel.app/#document-portal
-- **Visa Knowledge Hub & Guides**: https://vartimaxconsultancy.vercel.app/#blogs
+- **Eligibility Assessment Calculator**: https://vartimaxconsultancy.vercel.app/assessment
+- **AI Embassy File Builder**: https://vartimaxconsultancy.vercel.app/ai-file-assistant
+- **Secure Document Upload Portal**: https://vartimaxconsultancy.vercel.app/document-portal
+- **Visa Progress Tracker**: https://vartimaxconsultancy.vercel.app/visa-tracker
+- **Visa Knowledge Hub & Guides**: https://vartimaxconsultancy.vercel.app/blogs

@@ -95,22 +95,24 @@ export const HomePage: React.FC<HomePageProps> = ({
                   <span>Book Free Embassy File Review</span>
                 </button>
 
-                <button
-                  onClick={() => onNavigate('document-portal')}
+                <a
+                  href="/document-portal"
+                  onClick={(e) => { e.preventDefault(); onNavigate('document-portal'); }}
                   className="bg-[#07244A] hover:bg-[#0B356D] text-white font-bold px-6 py-4 rounded-xl text-sm border border-[#15488A] transition-all flex items-center gap-2 cursor-pointer"
                 >
                   <FileText className="w-4 h-4 text-[#C5A059]" />
                   <span>Upload Documents</span>
-                </button>
+                </a>
 
-                <button
-                  onClick={() => onNavigate('visa-tracker')}
+                <a
+                  href="/visa-tracker"
+                  onClick={(e) => { e.preventDefault(); onNavigate('visa-tracker'); }}
                   className="bg-[#061F40] hover:bg-[#092D5A] text-[#F3F4F6] font-bold px-5 py-4 rounded-xl text-sm border border-[#C5A059]/50 hover:border-[#C5A059] transition-all flex items-center gap-2 cursor-pointer shadow-md"
                 >
                   <Search className="w-4 h-4 text-[#C5A059]" />
                   <span>Visa Progress Tracker</span>
                   <span className="text-[10px] bg-[#C5A059] text-[#042354] px-1.5 py-0.5 rounded font-black">LIVE</span>
-                </button>
+                </a>
               </div>
 
               {/* Trust Points */}
@@ -231,7 +233,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       </section>
 
       {/* 3. 6 INTERACTIVE VISA SERVICES GRID WITH SEO OPTIMIZED IMAGERY */}
-      <section className="py-16 px-4 sm:px-8 bg-[#092E5E] border-b border-[#0C356A]">
+      <section id="services-section" className="py-16 px-4 sm:px-8 bg-[#092E5E] border-b border-[#0C356A]">
         <div className="max-w-7xl mx-auto space-y-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
@@ -247,13 +249,14 @@ export const HomePage: React.FC<HomePageProps> = ({
               </p>
             </div>
 
-            <button
-              onClick={() => onNavigate('document-portal')}
+            <a
+              href="/document-portal"
+              onClick={(e) => { e.preventDefault(); onNavigate('document-portal'); }}
               className="inline-flex items-center gap-2 text-xs font-bold text-[#C5A059] hover:text-[#D4AF37] transition-colors cursor-pointer"
             >
               <span>View Full Document Requirements Portal</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </a>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -323,13 +326,14 @@ export const HomePage: React.FC<HomePageProps> = ({
                       ⏱ {svc.processingTime}
                     </div>
 
-                    <button
-                      onClick={() => onSelectService(svc.slug)}
+                    <a
+                      href={`/services/${svc.slug}`}
+                      onClick={(e) => { e.preventDefault(); onSelectService(svc.slug); }}
                       className="inline-flex items-center gap-1.5 text-xs font-bold text-[#C5A059] group-hover:text-[#D4AF37] transition-colors cursor-pointer"
                     >
                       <span>View Embassy Details</span>
                       <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -599,13 +603,14 @@ export const HomePage: React.FC<HomePageProps> = ({
               </p>
             </div>
 
-            <button
-              onClick={() => onNavigate('blogs')}
+            <a
+              href="/blogs"
+              onClick={(e) => { e.preventDefault(); onNavigate('blogs'); }}
               className="inline-flex items-center gap-2 text-xs font-bold bg-[#C5A059] hover:bg-[#D4AF37] text-[#042354] px-4 py-2.5 rounded-xl shadow-md transition-all cursor-pointer shrink-0"
             >
               <span>View All Guides & Articles</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </a>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
