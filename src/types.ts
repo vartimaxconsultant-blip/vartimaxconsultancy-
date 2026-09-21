@@ -138,6 +138,14 @@ export interface BlogArticleSection {
   subheading?: string;
   paragraphs: string[];
   bulletPoints?: string[];
+  image?: {
+    src: string;
+    alt: string;
+    title: string;
+    caption?: string;
+    width?: number;
+    height?: number;
+  };
   calloutBox?: {
     type: 'tip' | 'warning' | 'info';
     text: string;

@@ -6,6 +6,8 @@ import ukVisaImg from '../assets/images/uk_study_tourist_visa_1787827727925.jpg'
 import usaVisaImg from '../assets/images/usa_b1b2_f1_visa_1787827747598.jpg';
 import australiaVisaImg from '../assets/images/australia_subclass_visa_1787827768250.jpg';
 import flightHotelImg from '../assets/images/flight_hotel_gds_1787827784002.jpg';
+import schengenVisaPakistanImg from '../assets/images/schengen_visa_pakistan_1789414484945.jpg';
+import visaCoverLetterImg from '../assets/images/visa_cover_letter_1789414500395.jpg';
 
 export interface SeoImageItem {
   src: string;
@@ -89,5 +91,23 @@ export const SEO_IMAGES = {
     width: 1920,
     height: 1080,
     keywordFocus: 'VartiMax Consultant Gaga Downtown Islamabad'
+  },
+  schengenPakistan: {
+    src: schengenVisaPakistanImg,
+    alt: 'How to Get a Schengen Visa from Pakistan in 2026 Without Getting Refused - Passport and File Setup',
+    title: 'Schengen Visa from Pakistan 2026 - Pakistani Passport, Travel Itinerary and Embassy File Guide',
+    caption: 'Official European Schengen visa file preparation in Pakistan with Pakistani passport, flight itinerary, and verified paperwork.',
+    width: 1920,
+    height: 1080,
+    keywordFocus: 'Schengen Visa from Pakistan 2026 Without Refusal'
+  },
+  visaCoverLetter: {
+    src: visaCoverLetterImg,
+    alt: 'Schengen Visa Cover Letter and Bank Statement Verification for Pakistani Applicants',
+    title: 'Embassy Cover Letter and Financial Proof Architecture - VartiMax Consultant',
+    caption: 'Airtight Schengen embassy cover letter and 6-month bank statement verification file for European consulates in Pakistan.',
+    width: 1920,
+    height: 1080,
+    keywordFocus: 'Schengen Visa Cover Letter Pakistan Bank Statement'
   }
 };

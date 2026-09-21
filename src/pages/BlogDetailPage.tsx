@@ -208,6 +208,30 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({
                   </p>
                 ))}
 
+                {section.image && (
+                  <figure className="my-6 rounded-2xl overflow-hidden border border-[#15488A] bg-[#07244A] shadow-xl">
+                    <img
+                      src={section.image.src}
+                      alt={section.image.alt}
+                      title={section.image.title}
+                      width={section.image.width || 1200}
+                      height={section.image.height || 675}
+                      loading="lazy"
+                      decoding="async"
+                      referrerPolicy="no-referrer"
+                      className="w-full h-auto max-h-[420px] object-cover"
+                    />
+                    {section.image.caption && (
+                      <figcaption className="px-4 py-2.5 bg-[#061F40] border-t border-[#123A6D] text-xs text-[#93C5FD] flex items-center justify-between">
+                        <span>{section.image.caption}</span>
+                        <span className="text-[10px] text-[#C5A059] font-semibold uppercase tracking-wider">
+                          SEO Verified
+                        </span>
+                      </figcaption>
+                    )}
+                  </figure>
+                )}
+
                 {section.bulletPoints && section.bulletPoints.length > 0 && (
                   <ul className="space-y-2 pl-2 pt-1">
                     {section.bulletPoints.map((bp, bIdx) => (
