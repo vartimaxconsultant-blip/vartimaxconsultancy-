@@ -279,34 +279,34 @@
       </header>
 
       <main class="p-6 space-y-6 text-slate-200">
-        <section>
+        <section id="home-section">
           <h2 class="text-xl font-bold text-white">Comprehensive Embassy File Preparation in Islamabad &amp; Rawalpindi</h2>
           <p class="mt-2 text-sm leading-relaxed">VartiMax Consultant delivers end-to-end visa filing services for Pakistani passport holders and overseas applicants. Our senior immigration counselors in Islamabad provide rigorous case assessment, precision cover letter formulation, verifiable hotel reservations, flight itineraries, €30,000 Schengen insurance, FBR tax profiling, and direct interview coaching for USA B1/B2, Canada SDS, UK CAS, Schengen 29 States, and Saudi Umrah.</p>
         </section>
 
-        <section>
+        <section id="services-section">
           <h2 class="text-xl font-bold text-white">Specialized Document Creation &amp; High-Intent Visa Services</h2>
           <ul class="list-disc pl-5 mt-2 space-y-2 text-sm">
-            <li>
+            <li id="service-schengen-file-prep">
               <a href="/services/schengen-file-preparation" class="font-bold underline text-[#C5A059]">Schengen Visa Cover Letter Writing Service Islamabad &amp; Travel Itinerary Creation Pakistan:</a>
               Prevent Article 32 refusals with bespoke embassy cover letters, verifiable day-by-day European travel itineraries, and complete Schengen file preparation tailored for Pakistani passport holders.
             </li>
-            <li>
+            <li id="service-dummy-flight-hotel">
               <a href="/services/dummy-flight-hotel-booking" class="font-bold underline text-[#C5A059]">Dummy Flight Booking for Visa Rawalpindi &amp; Islamabad (Live GDS PNR):</a>
               Never risk purchasing expensive non-refundable airline tickets before visa grant. Get 100% embassy-approved GDS flight itineraries and confirmed hotel booking vouchers accepted by all embassies in Pakistan.
             </li>
-            <li>
+            <li id="service-usa-interview">
               <a href="/services/usa-visa-interview-coaching" class="font-bold underline text-[#C5A059]">USA Visa Interview Mock Practice Islamabad:</a>
               Simulated consular window drills, DS-160 consistency audits, and Section 214(b) refusal recovery for US Embassy Islamabad &amp; Karachi.
             </li>
-            <li>
+            <li id="visa-tracker-section">
               <a href="/visa-tracker" class="font-bold underline text-[#C5A059]">Client Visa Progress Tracker:</a>
               Real-time milestone tracking for Document Review, Embassy Submission, Interview Prep, and Visa Decision.
             </li>
           </ul>
         </section>
 
-        <section>
+        <section id="blogs-section">
           <h2 class="text-xl font-bold text-white">Latest Immigration &amp; Visa Guides for Pakistani Applicants</h2>
           <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
             <li><a href="/blogs/how-to-draft-embassy-compliant-cover-letter-schengen-visa-pakistan" class="underline">How to Draft an Embassy-Compliant Cover Letter for Schengen Visa in Pakistan</a></li>
@@ -315,24 +315,121 @@
           </ul>
         </section>
 
-        <section>
+        <section id="core-services-section">
           <h2 class="text-xl font-bold text-white">Our Core Visa Categories &amp; Worldwide Admissions</h2>
           <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
-            <li><strong>Schengen Tourist &amp; Business Visa:</strong> Complete file formulation, verified hotel bookings, and travel insurance for Italy, Germany, France, Spain, Netherlands, and all 29 Schengen member states.</li>
-            <li><strong>Canada Study Permit &amp; Visitor Visa:</strong> SDS/Non-SDS pathway strategy, GIC account guidance, and personalized Statement of Purpose (SOP) addressing home ties.</li>
-            <li><strong>USA B1/B2 Tourist &amp; F-1 Student Visas:</strong> DS-160 filing precision, mock embassy interview sessions, and Section 214(b) refusal recovery plans.</li>
-            <li><strong>UK Study Abroad &amp; Standard Visitor Visas:</strong> 28-day maintenance funds auditing, TB test protocol, CAS compliance, and university admissions.</li>
-            <li><strong>Dubai &amp; UAE 30/60 Days E-Visas:</strong> Express electronic visa issuance, OK to Board processing, and flight ticketing.</li>
-            <li><strong>Umrah Visa &amp; Luxury VIP Packages:</strong> Direct Saudi visa issuance, Makkah/Madinah 5-star hotel vouchers, and airport transport.</li>
+            <li id="service-schengen-visit-visa"><strong>Schengen Tourist &amp; Business Visa:</strong> Complete file formulation, verified hotel bookings, and travel insurance for Italy, Germany, France, Spain, Netherlands, and all 29 Schengen member states.</li>
+            <li id="service-canada-visa"><strong>Canada Study Permit &amp; Visitor Visa:</strong> SDS/Non-SDS pathway strategy, GIC account guidance, and personalized Statement of Purpose (SOP) addressing home ties.</li>
+            <li id="service-usa-visa"><strong>USA B1/B2 Tourist &amp; F-1 Student Visas:</strong> DS-160 filing precision, mock embassy interview sessions, and Section 214(b) refusal recovery plans.</li>
+            <li id="service-uk-admissions"><strong>UK Study Abroad &amp; Standard Visitor Visas:</strong> 28-day maintenance funds auditing, TB test protocol, CAS compliance, and university admissions.</li>
+            <li id="service-uae-visa"><strong>Dubai &amp; UAE 30/60 Days E-Visas:</strong> Express electronic visa issuance, OK to Board processing, and flight ticketing.</li>
+            <li id="service-umrah-packages"><strong>Umrah Visa &amp; Luxury VIP Packages:</strong> Direct Saudi visa issuance, Makkah/Madinah 5-star hotel vouchers, and airport transport.</li>
           </ul>
         </section>
 
-        <section>
+        <section id="contact-section">
           <h2 class="text-xl font-bold text-white">Contact VartiMax Consultant Islamabad</h2>
           <p class="text-sm">Visit our headquarters at Office 78, Basement, Gaga Downtown, Islamabad, Pakistan. Call our direct telephone desk at <a href="tel:+923401207525" class="underline">+92 340 1207525</a> or <a href="https://wa.me/923401207525" target="_blank" rel="noopener" class="underline">WhatsApp Us (+92 340 1207525)</a> or email <a href="mailto:vartimaxconsultant@gmail.com" class="underline">vartimaxconsultant@gmail.com</a>.</p>
         </section>
       </main>
     </div>
+
+    <!-- Pre-Hydration Client Router & Deep-Link Handler -->
+    <script>
+      (function() {
+        try {
+          // Route-to-Section & Fallback Map
+          var routeToSectionMap = {
+            '/': 'home-section',
+            '/services': 'services-section',
+            '/services/schengen-file-preparation': 'service-schengen-file-prep',
+            '/services/dummy-flight-hotel-booking': 'service-dummy-flight-hotel',
+            '/services/usa-visa-interview-coaching': 'service-usa-interview',
+            '/services/schengen-visit-visa-consultant-islamabad': 'service-schengen-visit-visa',
+            '/services/canada-student-visa-consultancy': 'service-canada-visa',
+            '/services/usa-visit-b1-b2-student-f1-visa': 'service-usa-visa',
+            '/services/worldwide-student-admissions': 'service-uk-admissions',
+            '/services/uae-visit-residence-golden-visa': 'service-uae-visa',
+            '/services/umrah-visa-packages': 'service-umrah-packages',
+            '/visa-tracker': 'visa-tracker-section',
+            '/tracker': 'visa-tracker-section',
+            '/document-portal': 'document-portal-section',
+            '/assessment': 'assessment-section',
+            '/eligibility': 'assessment-section',
+            '/eligibility-calculator': 'assessment-section',
+            '/quiz': 'quiz-section',
+            '/ai-file-assistant': 'ai-assistant-section',
+            '/crm': 'crm-section',
+            '/blogs': 'blogs-section',
+            '/about': 'about-section',
+            '/contact': 'contact-section'
+          };
+
+          function handleInitialRoute() {
+            var rawPath = window.location.pathname.replace(/\/+$/, '') || '/';
+            var rawHash = window.location.hash.replace(/^#\/?/, '').trim();
+
+            // 1. Support legacy hash migration (e.g. /#service-schengen-visa -> /services/schengen-file-preparation)
+            if (rawHash && (!rawPath || rawPath === '/')) {
+              var cleanMappedPath = null;
+              if (rawHash === 'services') cleanMappedPath = '/services';
+              else if (rawHash === 'service-schengen-file-preparation' || rawHash === 'service-schengen-visa') cleanMappedPath = '/services/schengen-file-preparation';
+              else if (rawHash === 'service-dummy-flight-hotel-booking' || rawHash === 'service-dummy-booking') cleanMappedPath = '/services/dummy-flight-hotel-booking';
+              else if (rawHash === 'service-usa-visa-interview-coaching' || rawHash === 'service-usa-coaching') cleanMappedPath = '/services/usa-visa-interview-coaching';
+              else if (rawHash.indexOf('service-') === 0) cleanMappedPath = '/services/' + rawHash.replace('service-', '');
+              else if (rawHash.indexOf('blog-') === 0) cleanMappedPath = '/blogs/' + rawHash.replace('blog-', '');
+              else if (rawHash === 'visa-tracker' || rawHash === 'tracker') cleanMappedPath = '/visa-tracker';
+              else if (rawHash === 'about') cleanMappedPath = '/about';
+              else if (rawHash === 'contact') cleanMappedPath = '/contact';
+              else if (rawHash === 'blogs') cleanMappedPath = '/blogs';
+
+              if (cleanMappedPath) {
+                rawPath = cleanMappedPath;
+                if (window.history && window.history.replaceState) {
+                  window.history.replaceState(null, '', cleanMappedPath);
+                }
+              }
+            }
+
+            // 2. Determine target section ID
+            var targetSectionId = routeToSectionMap[rawPath];
+
+            if (!targetSectionId) {
+              if (rawPath.indexOf('/services/') === 0) {
+                targetSectionId = 'services-section';
+              } else if (rawPath.indexOf('/blogs/') === 0) {
+                targetSectionId = 'blogs-section';
+              } else {
+                targetSectionId = 'home-section';
+              }
+            }
+
+            // 3. Highlight/activate matching static section prior to React mount
+            function activateSection() {
+              var allSections = document.querySelectorAll('#root main > section');
+              var matched = document.getElementById(targetSectionId);
+
+              if (matched) {
+                matched.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }
+
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', activateSection);
+            } else {
+              activateSection();
+            }
+          }
+
+          handleInitialRoute();
+
+          // Listen for popstate & custom navigate events
+          window.addEventListener('popstate', handleInitialRoute);
+        } catch (err) {
+          console.warn('VartiMax client router initialized:', err);
+        }
+      })();
+    </script>
 
     <script type="module" src="/src/main.tsx"></script>
   </body>

@@ -134,10 +134,12 @@ function AppContent() {
 
   const currentService = selectedServiceSlug
     ? VISA_SERVICES.find((s) => s.slug === selectedServiceSlug) ||
-      (selectedServiceSlug === 'schengen-file-preparation'
+      (selectedServiceSlug === 'schengen-visit-visa'
         ? VISA_SERVICES.find((s) => s.slug === 'schengen-visit-visa-consultant-islamabad')
-        : selectedServiceSlug === 'usa-visa-interview-coaching'
-        ? VISA_SERVICES.find((s) => s.slug === 'usa-visit-b1-b2-student-f1-visa')
+        : selectedServiceSlug === 'usa-coaching'
+        ? VISA_SERVICES.find((s) => s.slug === 'usa-visa-interview-coaching')
+        : selectedServiceSlug === 'dummy-booking'
+        ? VISA_SERVICES.find((s) => s.slug === 'dummy-flight-hotel-booking')
         : null)
     : null;
 
